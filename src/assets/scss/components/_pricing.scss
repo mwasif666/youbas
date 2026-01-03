@@ -1,0 +1,139 @@
+@use '../root' as *;
+@use '../utilities' as *;
+  
+  
+  .pricing1 {
+    &-item {
+        position: relative;
+        &:not(:last-child) {
+            padding-bottom: 48px;
+        }
+        &-card {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            border-radius: 20px;
+            background: $white;
+            gap: 40px;
+            padding: 30px 40px;
+
+            @include breakpoint (lg) {
+                gap: 78px;
+                padding: 49px 60px 51px;
+            }
+
+            &--bg {
+                background: $gray-color-1;
+            }
+            
+            &-price {
+                &__value {
+                    color: $title-color;
+                    text-align: right;
+                    font-family: $title-font;
+                    font-size: 60px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: 66px; 
+                    letter-spacing: -1.2px;
+                    text-transform: uppercase;
+                }
+                &__unit {
+                    color: $title-color;
+                    font-family: $body-font;
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 30px;
+                }
+            }
+            &-content {
+               flex: 1;
+               @include breakpoint (xl) {
+                   padding-right: 120px;
+                }
+               @include breakpoint (xxl) {
+                    padding-right: 225px;
+                }
+                &__title {
+                    color: $theme-color;
+                    text-transform: uppercase;
+                    padding-bottom: 16px;
+                }
+            }
+        }
+        &__thumb {
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            top: -9%;
+            right: 23%;
+            border-radius: 20px;
+            img {
+                border-radius: 20px;
+            }
+            @include transition;
+            @include breakpoint (max-xl) {
+                display: none;
+            }
+        }
+        &:hover {
+            .pricing1 {
+                &-item {
+                    &__thumb {
+                        opacity: 0;
+                        visibility: hidden;
+                        z-index: 10;
+                    }
+                }
+            }
+        }
+        .theme-btn {
+            &.style1 {
+                background: $title-color;
+                border: none;
+                a {
+                    color: $white!important;
+                    display: inline-block;
+                }
+                i {
+                    margin-left: 6px;
+                }
+                &:before {
+                    transition-duration: 800ms;
+                    position: absolute;
+                    width: 210%;
+                    height: 290%;
+                    content: "";
+                    top: 162%;
+                    left: 50%;
+                    background: $theme-color;
+                    -webkit-transform: translateX(-50%);
+                    transform: translateX(-50%) rotate(-8deg);
+                    border-radius: 80%;
+                    z-index: -1;
+                }
+                &:hover {
+                    color: $white !important;
+                    border: none;
+                    &.gt-btn-icon-1 {
+                        &::after {
+                            color: $theme-color;
+                        }
+                    }
+                    &:before {
+                        top: -96%;
+                    }
+                }
+            } 
+        }
+        &:hover {
+            .theme-btn {
+                &.style1 {
+                    background: $theme-color;
+                }
+            }
+        }
+    }
+  }

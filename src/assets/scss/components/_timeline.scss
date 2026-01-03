@@ -1,0 +1,56 @@
+@use '../root' as *;
+@use '../utilities' as *;
+
+.timeline1 {
+    &-wrap {
+        position: relative;
+        &-step {
+            position: relative;
+            z-index: 9;
+            text-align: center;
+            &__numb {
+                color: $title-color;
+                font-family: $title-font;
+                font-size: 50px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 56px;
+                letter-spacing: -1px;
+                text-transform: uppercase;
+            }
+            &__icon {
+                padding-bottom: 17px;
+            }
+            &__title {
+                padding-bottom: 14px;
+            }
+            &__desc {
+                color: $title-color;
+                text-align: center;
+                font-family: $body-font;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 26px; 
+            }
+        }
+        &__shape {
+            display: none;
+            @include breakpoint (lg) {    
+                display: block;
+                position: absolute;
+                left: 0px;
+                bottom: 37%;
+                z-index: -9;
+            }      
+            @include breakpoint (xl) {
+                left: 61px;
+                bottom: 31%;
+            }
+            @include breakpoint (xxl) {
+                left: 150px;
+                bottom: 31%;
+            }
+        }
+    }
+}

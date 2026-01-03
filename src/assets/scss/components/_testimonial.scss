@@ -1,0 +1,198 @@
+@use '../root' as *;
+@use '../utilities' as *;
+
+
+.testimonial1 {
+    &-shape {
+        display: none;
+        @include breakpoint (lg) {
+            display: block;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+          
+        }   
+        &__line {
+            margin-left: 10px;
+            background: #262626;
+            width: 1.5px;
+            height: 287.828px;
+        }
+    }
+    &-card {
+        position: relative;
+        border-radius: 20px;
+        border: 2px solid $theme-color;
+        padding: 37px 30px;
+        &__text {
+            color: $title-color;
+            font-family: $body-font;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 40px;
+            padding-bottom: 34px;
+            @include breakpoint (lg) {
+                font-size: 23px;
+            }
+            @include breakpoint (xl) {
+                font-size: 28px;
+            }
+        }
+        &-author {
+            &__name {
+                padding-bottom: 5px;
+            }
+        }
+        &__quote {
+            position: absolute;
+            right: 34px;
+            bottom: 45px;
+        }
+    }
+    &-profile {
+        display: none;
+        @include breakpoint (lg) {
+            display: block;
+            padding-left: 35px;
+        } 
+        @include breakpoint (xl) {
+            padding-left: 0px;
+        }
+        &-items {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            &:not(:last-child) {
+                padding-bottom: 50px;
+            }
+
+            &__shape {
+                opacity: 0;
+                visibility: hidden;
+                @include transition;
+                display: none;
+                @include breakpoint (xl) {
+                    display: block;
+                    position: absolute;
+                    left: 1%;
+                }
+                @include breakpoint (xxl) {
+                    left: 18%;
+                }
+                &.active {
+                    opacity: 1;
+                    visibility: visible;
+                }          
+            }
+            &__one {
+                border-radius: 80px;
+                img {
+                    border-radius: 80px;
+                    max-width: fit-content;
+                }                
+            }
+        }
+    }
+}
+
+.testimonial2{
+    &__desc {
+        max-width: 463px;
+    }
+    &-card {
+        padding: 40px 32px;
+        border-radius: 20px;
+        background: $gray-color-1;
+
+        @include breakpoint (max-md) {
+            padding: 20px;
+        }
+
+        &-icon {
+            &__star {
+                display: flex;
+            }
+        }
+        &__desc {
+            padding-top: 16px;
+            padding-bottom: 37px;
+        }
+        &--bg {
+            background: $white;
+        }
+    }
+}
+
+.testimonial3 {
+    &-card {
+        position: relative;
+        display: flex;
+        background: $white;
+        border-radius: 20px;
+        
+        &-thumb {
+            position: relative;
+            img {
+                max-width: fit-content;
+                border-radius: 20px 0px 0px 20px;
+            }
+            &__videoIcon {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 6; 
+
+                :hover {
+                    svg {
+                        circle {
+
+                            fill: $title-color;
+                        }
+                        path {
+                            fill: $white;
+                        }
+
+                    }
+                }
+
+            }
+            @include breakpoint (max-xl) {
+                display: none;
+            }
+        }
+        &-content {
+            padding: 30px;
+
+            &__icon {
+                padding-bottom: 15px;
+            }
+            &__desc {
+                p {
+                    color: $title-color;
+                    font-family: $body-font;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 26px;
+                    padding-bottom: 25px;
+                }
+            }
+            &__name {
+                padding-bottom: 9px;
+            }
+            &__title {
+                p {
+                    color: $title-color;
+                    font-family: $body-font;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 26px;
+                }
+            }
+        }
+    }
+}

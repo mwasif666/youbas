@@ -1,0 +1,132 @@
+@use '../root' as *;
+@use '../utilities' as *;
+
+
+/*----------------------------------------------
+    # Faq style here
+----------------------------------------------*/
+.faq1 {
+    &-content {
+        position: relative;
+
+        &__thumb {
+            border-radius: 20px;
+            &::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                border-radius: 20px;
+                background: linear-gradient(180deg, rgba(38, 38, 38, 0.00) 0%, #262626 121%);
+            }
+            img {
+                border-radius: 20px;
+                width: 100%;
+            }
+        }
+
+        &__phone {
+            display: flex;
+            gap: 10px;
+            position: absolute;
+            bottom: 38px;
+            left: 6%;
+            h3 {
+                color: $white;
+            }
+        }
+    }
+}
+
+.faq-content {
+    margin-top: 35px;
+
+    .accordion-item {
+        background-color: $gray-color-1;
+        border: none;
+        border-top: 1px solid rgba(38, 38, 38, 0.30);
+        &:last-child {
+            border-bottom: 1px solid rgba(38, 38, 38, 0.30);
+        }
+        &:not(:last-child) {
+            border-bottom: none;
+        }
+
+        .accordion-header {
+            .accordion-button {
+                padding: 25px 0px 10px;
+                border: none;
+                border-radius: 0;
+                box-shadow: none;
+                text-align: left;
+
+                color: $title-color;
+                background-color: $gray-color-1;
+                font-size: 20px;
+                font-family: $title-font;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 30px;
+                letter-spacing: -0.48px;
+                text-transform: uppercase;
+            
+
+                &:after {
+                    font-weight: 500;
+                    transition: all 0.3s ease-in-out !important;
+                    background-image: url(../../../assets/images/icon/plus-icon.svg);
+                    color: $theme-color;
+                }
+
+                &:not(.collapsed):after {
+                    font-weight: 600;
+                    color: $theme-color;
+                    transform: rotate(45deg);
+                    -webkit-transform: rotate(45deg);
+                    -moz-transform: rotate(45deg);
+                    -ms-transform: rotate(45deg);
+                    -o-transform: rotate(45deg);
+                }
+
+                &.collapsed {
+                    padding: 25px 0px;
+                    color: $title-color;
+                }
+
+                &--bg {
+                    font-size: 24px;
+                    background-color: $white;
+                }
+
+            }
+        }
+
+        .accordion-collapse {
+            border: none;
+            .accordion-body {
+                padding-right: 30px;
+                padding-left: 0px;
+                padding-top: 0px;
+                padding-bottom: 23px;
+
+                color: $title-color-2;
+                font-family: $body-font;
+                font-size: 16px;
+                background-color: $gray-color-1;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 26px; 
+
+                @include breakpoint (max-xxl) {
+                    padding-right: 50px;
+                }
+
+                @include breakpoint (max-lg) {
+                    padding-right: 30px;
+                }
+                &--bg {
+                    background-color: $white;
+                }
+            }
+        }
+    }
+}

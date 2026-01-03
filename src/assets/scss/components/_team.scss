@@ -1,0 +1,255 @@
+@use '../root' as *;
+@use '../utilities' as *;
+
+
+.team1 {
+    &-card {
+        position: relative;
+        @include breakpoint (max-sm){
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+        &__title {
+            text-transform: uppercase;
+            text-align: center;
+            padding-top: 20px; 
+        }
+        &__desc {
+            color: $title-color;
+            text-align: center;
+            font-family: $body-font;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 26px;
+            padding-top: 2px;
+        }
+        &-thumb {
+            position: relative;
+
+            &__one {
+                border-radius: 20px;   
+                background: rgb(255, 248, 246);
+                img {
+                    border-radius: 20px;        
+                }
+            }
+            &__icon {
+                visibility: hidden;
+                opacity: 0;
+                position: absolute;
+                bottom: 24%;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+                z-index: 10;
+                img {
+                    background: #FFF;
+                    padding: 12px;
+                    border-radius: 12px;
+    
+                }
+            }
+            &:hover {
+                .team1 {
+                    &-card {
+                        &-thumb {                            
+                            &__one {
+                                @include transition;
+                                background: $theme-color;
+                                border-radius: 20px;
+                                img {
+                                    border-radius: 20px;
+                                }
+                            }
+                            &__icon {
+                                opacity: 1;
+                                visibility: visible;
+                                @include transition;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.team2 {
+    &-card {
+        position: relative;
+
+        &-box {
+            position: relative;
+            &__bg {
+                border-radius: 20px;
+                background: $gray-color-1;
+                width: 306px;
+                height: 350px;
+            }
+            &-thumb {
+                &__one {
+                    position: absolute;
+                    top: 24px;
+                    right: -2px;
+                    border-radius: 20px;
+                    img {
+                        border-radius: 20px;
+                        width: 282px;
+                        height: 350px;
+                    }
+                }
+                &__icon {
+                    visibility: visible;
+                    opacity: 1;
+        
+                    position: absolute;
+                    bottom: -24px;
+                    right: -31px;
+                    transform: translateX(-53%);
+                    z-index: 10;
+        
+                    display: flex;
+                    width: 54px;
+                    height: 54px;
+                    padding: 18px 24px;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    flex-shrink: 0;
+                    border-radius: 0px 0px 20px 0px;
+                    background: $theme-color;
+        
+                    img {
+                        border-radius: 0px 0px 20px 0px;
+                        max-width: fit-content;
+                    }
+                }
+                &:hover {
+                    .team2 {
+                        &-card {
+                            &-box {
+                                &-thumb {
+                                    &__icon {
+                                        background: $title-color;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &:hover {
+                .team2 {
+                    &-card {
+                        &-box {
+                            &__bg {                  
+                                background: $theme-color;                        
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        &__title {
+            text-transform: uppercase;
+            text-align: center;
+            padding-top: 48px; 
+        }
+        &__desc {
+            color: $title-color;
+            text-align: center;
+            font-family: $body-font;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 26px;
+            padding-top: 2px;
+        }
+
+    }
+}
+
+.team3 {
+    &__thumb {
+        border-radius: 34.379px;
+        img {
+            border-radius: 34.379px;
+        }
+    }
+    &-content {
+        padding-left: 0px;
+        @include breakpoint (xl) {
+            padding-left: 84px;
+        } 
+        .section-top {
+            &__title {
+                padding-bottom: 10px;
+            }
+            &__subtitle {
+                margin-bottom: 25px;
+            }
+            &__desc {
+                color: $title-color;
+                font-family: $body-font;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 30px;
+            }
+        }
+        &-contact {            
+            &-item {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding-bottom: 9px;
+
+                &__text {
+                    color: $title-color;
+                    font-family: $body-font;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 26px; 
+                }
+            }
+        }
+        &-social {
+            padding-top: 11px;
+            display: flex;
+            gap: 8px;
+            &__item {
+              a {
+                display: flex;
+                width: 44px;
+                height: 44px;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                border-radius: 12px;
+                background: $title-color;
+                &:hover {
+                  background: $theme-color;
+                }
+              }
+            }
+        }
+        &-form {
+            padding-top: 78px;
+            @include breakpoint (max-md) {
+                padding-top: 40px;
+            }
+            &__title {
+                padding-bottom: 13px;
+            }
+            &__desc {
+                padding-bottom: 30px;
+            }
+        }
+    }
+}
