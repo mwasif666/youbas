@@ -8,7 +8,7 @@ export const blogPosts = [
         image: blogThumb1_1,
         date: "June 16, 2024",
         category: "Business",
-        title: "Essential Tools for Managing Digital Asset Library",
+        title: "Essential Tool for Managing Digital Asset Library",
         link: "/blog/details-1",
     },
     {
