@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import logoWhite from "@/assets/images/logo/logo-white.svg";
+import logoWhite from "@/assets/images/logo/logo.png";
 import HeaderMenu from "@/components/header/HeaderMenu";
 import HeaderSearchIcon from "@/components/header/HeaderSearchIcon";
 import {useAppContext} from "@/context";

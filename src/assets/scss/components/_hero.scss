@@ -116,7 +116,7 @@
             position: absolute;
             width: 1px;
             height: 30px;
-            background: linear-gradient(91deg, #F3604C -1.28%, rgba(255, 255, 255, 0.00) 96.61%);
+            background: linear-gradient(91deg, #264aa1 -1.28%, rgba(255, 255, 255, 0.00) 96.61%);
             left: 50%;
             transform: translateX(-50%);
         }
@@ -138,7 +138,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: #F3604C;
+        background-color: #264aa1;
         color: #FFF;
         font-family: $body-font;
         font-size: 18px;
@@ -251,7 +251,7 @@
                 align-items: center;
                 justify-content: center;
                 flex-direction: column;
-                background-color: #F3604C;
+                background-color: #264aa1;
                 width: 160px;
                 height: 160px;
                 border-radius: 50%;
@@ -321,7 +321,7 @@
     &__shape1 {
         position: absolute;
         border-radius: 461.675px;
-        background: #F3604C;
+        background: #264aa1;
         filter: blur(400px);    
         width: 450px;
         height: 461.675px;
@@ -332,7 +332,7 @@
     &__shape2 {
         position: absolute;
         border-radius: 461.675px;
-        background: #F3604C;
+        background: #264aa1;
         filter: blur(400px);
         width: 450px;
         height: 461.675px;

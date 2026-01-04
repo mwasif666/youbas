@@ -1,79 +1,139 @@
 "use client";
 
+import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+
 import "swiper/css";
 import "swiper/css/pagination";
-import { Autoplay, Pagination } from "swiper/modules";
-import { useState } from "react";
 
-import heroThumb1_1 from "@/assets/images/hero/heroThumb1_1.png";
-import heroThumb1_2 from "@/assets/images/hero/heroThumb1_2.png";
-import heroThumb1_3 from "@/assets/images/hero/heroThumb1_3.png";
 import Link from "next/link";
 
+import heroThumb1_1 from "@/assets/images/hero/1.jpeg";
+import heroThumb1_2 from "@/assets/images/hero/2.jpeg";
+// import heroThumb1_3 from "@/assets/images/hero/heroThumb1_3.png";
+import heroThumb1_3 from "@/assets/images/hero/3.jpeg";
+
 const slides = [
-    { id: 1, image: heroThumb1_1, bg: heroThumb1_1.src },
-    { id: 2, image: heroThumb1_2, bg: heroThumb1_2.src },
-    { id: 3, image: heroThumb1_3, bg: heroThumb1_3.src },
+  {
+    id: 1,
+    bg: heroThumb1_1.src,
+    title: "Build, Scale & Automate Your E-Commerce Brand",
+    subtitle: "With Factory-Direct Advantage",
+    desc:
+      "YouBas Ecom Services helps entrepreneurs, brands, and investors launch, manage, and scale profitable e-commerce businesses on Amazon, eBay, Walmart, Etsy, and TikTok Shop. Our approach is backed by direct factory sourcing, DDP shipping, and complete end-to-end brand building — allowing businesses to grow faster, operate efficiently, and scale sustainably.",
+    ctaText: "Get Free Consultation",
+    ctaLink: "/contact",
+  },
+  {
+    id: 2,
+    bg: heroThumb1_2.src,
+    title: "End-to-End E-Commerce Growth Services",
+    subtitle: "From sourcing to scaling — we handle it all",
+    desc:
+      "We provide complete e-commerce growth solutions covering marketplace management across Amazon, eBay, Walmart, Etsy, and TikTok Shop. Our services include private label and brand building, factory-direct product sourcing, and reliable China to USA, UK, and Australia DDP shipping. Alongside this, we support businesses with web development, digital marketing, and social growth to ensure consistent and scalable expansion.",
+    ctaText: "Get Free Consultation",
+    ctaLink: "/contact",
+  },
+  {
+    id: 3,
+    bg: heroThumb1_3.src,
+    title: "Why Businesses Choose YouBas Ecom Services",
+    subtitle: "Built for long-term, scalable growth",
+    desc:
+      "Businesses choose YouBas Ecom Services because we work directly with verified factories, offering factory-level pricing without middlemen. Our team brings deep multi-marketplace expertise, dedicated account managers, and scalable systems designed for long-term growth. With a transparent process and clear reporting, we focus on building strong foundations that support sustainable success over time. We don’t sell services — we build sustainable e-commerce businesses.",
+    ctaText: "Get Free Consultation",
+    ctaLink: "/contact",
+  },
 ];
 
+
 export default function HeroSectionOne() {
-    const [bgImage, setBgImage] = useState(slides[0].bg);
+  const [bgImage, setBgImage] = useState(slides[0].bg);
+  const paginationRef = useRef(null);
 
-    const handleSlideChange = (swiper) => {
-        setBgImage(slides[swiper.activeIndex].bg);
-    };
+  const syncBg = (swiper) => {
+    const idx = typeof swiper?.realIndex === "number" ? swiper.realIndex : 0;
+    setBgImage(slides[idx]?.bg || slides[0].bg);
+  };
 
-    return (
-        <section className="hero1 fix">
-            <div className="hero1-background-image" style={{backgroundImage: `url(${bgImage})`}}></div>
-            <div className="swiper hero-global-slider">
-                <Swiper
-                    loop={true}
-                    slidesPerView={1}
-                    autoplay={{delay: 3000, disableOnInteraction: false}}
-                    speed={1000}
-                    pagination={{
-                        el: ".swiper-pagination",
-                        clickable: true,
-                        renderBullet: function (index, className) {
-                            return '<span class="' + className + '">' + (index + 1) + "</span>";
-                        }
-                    }}
-                    onSlideChange={handleSlideChange}
-                    modules={[Pagination, Autoplay]}
-                    className="swiper-wrapper"
-                >
-                    {slides.map((slide) => (
-                        <SwiperSlide key={slide.id} className="swiper-slide">
-                            <div className="container">
-                                <div className="row g-4">
-                                    <div className="col-lg-8 col-xl-6">
-                                        <div className="hero1-content">
-                                            <div className="hero1-content__title">
-                                                <h1>Smart digital business solutions</h1>
-                                            </div>
-                                            <div className="hero1-content__desc">
-                                                <h4>
-                                                    We specialize in a comprehensive range of services, including
-                                                    branding,
-                                                    digital marketing, content creation, and web design, all to meet the
-                                                    needs of each client.
-                                                </h4>
-                                            </div>
-                                            <div className="btn-wrapper pt-40">
-                                                <Link className="theme-btn style1" href="/project">View Our Works</Link>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
+  return (
+    <section className="hero1 fix">
+      {/* IMPORTANT: background overlay click block na kare */}
+      <div
+        className="hero1-background-image"
+        style={{ backgroundImage: `url(${bgImage})` }}
+      />
 
-            </div>
-            <div className="swiper-pagination top-0"></div>
-        </section>
-    );
+      <div className="swiper hero-global-slider">
+        <Swiper
+          modules={[Pagination, Autoplay]}
+          slidesPerView={1}
+          loop={true}
+          autoplay={{ delay: 3500, disableOnInteraction: false, pauseOnMouseEnter: true }}
+          speed={900}
+          watchSlidesProgress={true}
+          // ✅ pagination ko ref se bind karna
+          onBeforeInit={(swiper) => {
+            swiper.params.pagination.el = paginationRef.current;
+          }}
+          pagination={{
+            el: paginationRef.current,
+            clickable: true,
+            renderBullet: (index, className) =>
+              `<span class="${className}">${index + 1}</span>`,
+          }}
+          onSwiper={syncBg}
+          onSlideChange={syncBg}
+        >
+          {slides.map((slide) => (
+            <SwiperSlide key={slide.id}>
+              <div className="container">
+                <div className="row g-4">
+                  <div className="col-lg-8 col-xl-7">
+                    <div className="hero1-content">
+                      <div className="hero1-content__title">
+                        <h1>{slide.title}</h1>
+                      </div>
+
+                      {slide.subtitle ? (
+                        <div className="hero1-content__subtitle">
+                          <h4>{slide.subtitle}</h4>
+                        </div>
+                      ) : null}
+
+                      <div className="hero1-content__desc">
+                        {slide.desc ? <h4>{slide.desc}</h4> : null}
+
+                        {slide.bullets?.length ? (
+                          <ul className="hero1-bullets">
+                            {slide.bullets.map((b, i) => (
+                              <li key={i}>{b}</li>
+                            ))}
+                          </ul>
+                        ) : null}
+
+                        {slide.bottomLine ? (
+                          <p className="hero1-bottomline">{slide.bottomLine}</p>
+                        ) : null}
+                      </div>
+
+                      <div className="btn-wrapper pt-40">
+                        <Link className="theme-btn style1" href={slide.ctaLink}>
+                          {slide.ctaText}
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        {/* ✅ Ref wala pagination div (same place) */}
+        <div ref={paginationRef} className="swiper-pagination top-0"></div>
+      </div>
+    </section>
+  );
 }

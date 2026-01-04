@@ -2,7 +2,7 @@ import aboutThumb1 from "@/assets/images/about/about-thumb1_1.jpg";
 import aboutShape1_3 from "@/assets/images/shape/aboutShape1_3.png";
 import aboutShape1_4 from "@/assets/images/shape/aboutShape1_4.png";
 import aboutThumb2 from "@/assets/images/about/about-thumb1_2.jpg";
-import aboutShape1_1 from "@/assets/images/shape/aboutShape1_1.png";
+import aboutShape1_1 from "@/assets/images/shape/thumb.png";
 import aboutShape1_2 from "@/assets/images/shape/aboutShape1_2.png";
 import check from "@/assets/images/icon/check.svg";
 import Link from "next/link";
@@ -42,29 +42,30 @@ export default function AboutSectionOne() {
                         <div className="about1-content">
                             <div className="section-top">
                                 <p className="section-top__subtitle">About Company</p>
-                                <h2 className="section-top__title pb-20">Digital agency for your business</h2>
-                                <p className="section-top__desc">Since 1985 Reed has pioneere specialist recruitment,
-                                    sourcing
-                                    knowledgeable, skilled professional pioneered speciali larong
-                                    recruitment, sourcing larong into the head infor their.</p>
+                                <h2 className="section-top__title pb-20">YouBas Ecom Services</h2>
+                                <p className="section-top__desc">YouBas Ecom Services is a global e-commerce solutions partner operating since 1998. We help business owners, brands, and wholesalers build, manage, scale, and automate profitable operations across Amazon, eBay, Walmart, and other international marketplaces—powered by factory-direct sourcing and DDP logistics.</p>
                             </div>
                             <div className="about1-content-checklist">
                                 <ul>
                                     <li className="about1-content-checklist-item">
                                         <span><img src={check.src} alt="icon"/></span>
-                                        <span className="about1-content-checklist-item__text">35+ Professional Team
-                                        Members</span>
+                                        <span className="about1-content-checklist-item__text">Operating since 1998</span>
                                     </li>
                                     <li className="about1-content-checklist-item">
                                         <span><img src={check.src} alt="icon"/></span>
-                                        <span className="about1-content-checklist-item__text">Any Business Problem
-                                        Solving</span>
+                                        <span className="about1-content-checklist-item__text">Enterprise-focused execution</span>
                                     </li>
                                     <li className="about1-content-checklist-item">
                                         <span><img src={check.src} alt="icon"/></span>
                                         <span
-                                            className="about1-content-checklist-item__text">Implement Business Pro</span>
+                                            className="about1-content-checklist-item__text">Direct factory collaboration (OEM / ODM)</span>
                                     </li>
+                                    <li className="about1-content-checklist-item">
+                                        <span><img src={check.src} alt="icon"/></span>
+                                        <span
+                                            className="about1-content-checklist-item__text">Factory-level pricing — no intermediaries</span>
+                                    </li>
+                                  
                                 </ul>
                             </div>
                             <div className="btn-wrapper">

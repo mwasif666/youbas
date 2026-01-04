@@ -7,9 +7,16 @@ const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: ["300", "500", 
 
 import "@/assets/css/all.min.css";
 import "@/assets/css/animate.css";
+import "@/assets/css/bootstrap.min.css";
+import "@/assets/css/magnific-popup.css";
+import "@/assets/css/main.css";
+// import "@/assets/css/main.css.map";
 import "@/assets/css/meanmenu.css";
 import "@/assets/css/splitting.css";
-import "@/assets/scss/main.scss";
+import "@/assets/css/swiper-bundle.min.css";
+
+
+// import "@/assets/scss/main.scss";
 
 import WowProvider from "@/provider/WowProvider";
 import Script from "next/script";
