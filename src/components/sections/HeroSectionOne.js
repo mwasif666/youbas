@@ -20,8 +20,7 @@ const slides = [
     bg: heroThumb1_1.src,
     title: "Build, Scale & Automate Your E-Commerce Brand",
     subtitle: "With Factory-Direct Advantage",
-    desc:
-      "YouBas Ecom Services helps entrepreneurs, brands, and investors launch, manage, and scale profitable e-commerce businesses on Amazon, eBay, Walmart, Etsy, and TikTok Shop. Our approach is backed by direct factory sourcing, DDP shipping, and complete end-to-end brand building — allowing businesses to grow faster, operate efficiently, and scale sustainably.",
+    desc: "YouBas Ecom Services helps entrepreneurs, brands, and investors launch, manage, and scale profitable e-commerce businesses on Amazon, eBay, Walmart, Etsy, and TikTok Shop. Our approach is backed by direct factory sourcing, DDP shipping, and complete end-to-end brand building — allowing businesses to grow faster, operate efficiently, and scale sustainably.",
     ctaText: "Get Free Consultation",
     ctaLink: "/contact",
   },
@@ -30,8 +29,7 @@ const slides = [
     bg: heroThumb1_2.src,
     title: "End-to-End E-Commerce Growth Services",
     subtitle: "From sourcing to scaling — we handle it all",
-    desc:
-      "We provide complete e-commerce growth solutions covering marketplace management across Amazon, eBay, Walmart, Etsy, and TikTok Shop. Our services include private label and brand building, factory-direct product sourcing, and reliable China to USA, UK, and Australia DDP shipping. Alongside this, we support businesses with web development, digital marketing, and social growth to ensure consistent and scalable expansion.",
+    desc: "We provide complete e-commerce growth solutions covering marketplace management across Amazon, eBay, Walmart, Etsy, and TikTok Shop. Our services include private label and brand building, factory-direct product sourcing, and reliable China to USA, UK, and Australia DDP shipping. Alongside this, we support businesses with web development, digital marketing, and social growth to ensure consistent and scalable expansion.",
     ctaText: "Get Free Consultation",
     ctaLink: "/contact",
   },
@@ -40,13 +38,11 @@ const slides = [
     bg: heroThumb1_3.src,
     title: "Why Businesses Choose YouBas Ecom Services",
     subtitle: "Built for long-term, scalable growth",
-    desc:
-      "Businesses choose YouBas Ecom Services because we work directly with verified factories, offering factory-level pricing without middlemen. Our team brings deep multi-marketplace expertise, dedicated account managers, and scalable systems designed for long-term growth. With a transparent process and clear reporting, we focus on building strong foundations that support sustainable success over time. We don’t sell services — we build sustainable e-commerce businesses.",
+    desc: "Businesses choose YouBas Ecom Services because we work directly with verified factories, offering factory-level pricing without middlemen. Our team brings deep multi-marketplace expertise, dedicated account managers, and scalable systems designed for long-term growth. With a transparent process and clear reporting, we focus on building strong foundations that support sustainable success over time. We don’t sell services — we build sustainable e-commerce businesses.",
     ctaText: "Get Free Consultation",
     ctaLink: "/contact",
   },
 ];
-
 
 export default function HeroSectionOne() {
   const [bgImage, setBgImage] = useState(slides[0].bg);
@@ -70,7 +66,11 @@ export default function HeroSectionOne() {
           modules={[Pagination, Autoplay]}
           slidesPerView={1}
           loop={true}
-          autoplay={{ delay: 3500, disableOnInteraction: false, pauseOnMouseEnter: true }}
+          autoplay={{
+            delay: 3500,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
           speed={900}
           watchSlidesProgress={true}
           // ✅ pagination ko ref se bind karna
@@ -95,12 +95,6 @@ export default function HeroSectionOne() {
                       <div className="hero1-content__title">
                         <h1>{slide.title}</h1>
                       </div>
-
-                      {slide.subtitle ? (
-                        <div className="hero1-content__subtitle">
-                          <h4>{slide.subtitle}</h4>
-                        </div>
-                      ) : null}
 
                       <div className="hero1-content__desc">
                         {slide.desc ? <h4>{slide.desc}</h4> : null}

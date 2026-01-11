@@ -1,0 +1,62 @@
+.header {
+  position: absolute;
+  z-index: 999;
+}
+
+/* Glass panel on sticky wrapper */
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+
+  /* glass */
+  background: rgba(10, 12, 16, 0.38);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+
+  /* subtle depth */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+
+  /* smoother on scroll */
+  transform: translateZ(0);
+}
+
+/* optional: tighten spacing & keep glass consistent */
+.menuArea {
+  border-radius: 16px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+/* Mobile menu button glass look */
+.menuToggle {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.menuToggle:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.menuToggle:active {
+  transform: scale(0.98);
+}
+
+/* Contact button: keep your theme-btn styling, just enhance a little */
+.contactBtn {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.contactBtn:hover {
+  background: rgba(255, 255, 255, 0.14);
+}

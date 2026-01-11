@@ -37,15 +37,15 @@ Description: Briza - Creative & Digital Agency Html Template
 :root {
   --body: #fff;
   --black: #000;
-  --white: #FEFEFE;
+  --white: #fefefe;
   --theme: #264aa1;
   --title: #262626;
   --title2: #595959;
-  --gray1: #F9F9F9;
-  --gray2: #F6F6F6;
+  --gray1: #f9f9f9;
+  --gray2: #f6f6f6;
   --text: #636363;
-  --border: #F8F8F8;
-  --border-2: #D4DCED;
+  --border: #f8f8f8;
+  --border-2: #d4dced;
   --box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.06);
   --icon-font: "Font Awesome 6 Pro";
 }
@@ -577,7 +577,7 @@ Description: Briza - Creative & Digital Agency Html Template
 }
 
 body {
-  font-family: "Plus Jakarta Sans", serif;
+  font-family: "Plus Jakarta Sans", serif !important;
   font-size: 16px;
   font-weight: normal;
   line-height: 28px;
@@ -615,7 +615,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif !important;
   margin: 0px;
   padding: 0;
   color: var(--header);
@@ -624,7 +624,7 @@ h6 {
 
 h1 {
   color: var(--Text-Colour, #041319);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif !important;
   font-size: 56px;
   font-style: normal;
   font-weight: 600;
@@ -642,13 +642,10 @@ h1 {
 }
 
 h2 {
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif !important;
   color: var(--title);
-  font-size: 60px;
   font-style: normal;
   font-weight: 600;
-  line-height: 66px;
-  letter-spacing: -1.2px;
   text-transform: uppercase;
 }
 @media (max-width: 1399px) {
@@ -665,7 +662,7 @@ h2 {
 
 h3 {
   color: var(--title);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif !important;
   font-size: 28px;
   font-style: normal;
   font-weight: 600;
@@ -686,7 +683,7 @@ h3 {
 
 h4 {
   color: var(--title);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif !important;
   font-size: 24px;
   font-style: normal;
   font-weight: 600;
@@ -702,7 +699,7 @@ h4 {
 
 h5 {
   color: var(--title);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif !important;
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
@@ -718,7 +715,7 @@ h6 {
 }
 
 h2 a {
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif !important;
   font-size: 70px;
   line-height: 124%;
   font-weight: 700;
@@ -736,7 +733,7 @@ h2 a {
 }
 
 h3 a {
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 48px;
   font-weight: 700;
   line-height: 122%;
@@ -749,7 +746,7 @@ h3 a {
 }
 
 h4 a {
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 24px;
   font-weight: 600;
   line-height: 122%;
@@ -763,7 +760,7 @@ h4 a {
 
 h5 a {
   color: var(--title);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
@@ -898,7 +895,7 @@ span a {
   height: 60px;
   line-height: 60px;
   text-align: center;
-  background-color: #F3E7E0;
+  background-color: #f3e7e0;
   border: 1px solid var(--white);
   border-radius: 50%;
   -webkit-box-shadow: 0 0 0 0 rgb(255, 238, 211);
@@ -911,7 +908,8 @@ span a {
 }
 
 .img-custom-anim-right {
-  animation: img-anim-right 1.3s forwards cubic-bezier(0.645, 0.045, 0.355, 1) 0.4s;
+  animation: img-anim-right 1.3s forwards cubic-bezier(0.645, 0.045, 0.355, 1)
+    0.4s;
   opacity: 0;
 }
 
@@ -928,7 +926,8 @@ span a {
   }
 }
 .img-custom-anim-left {
-  animation: img-anim-left 1.3s forwards cubic-bezier(0.645, 0.045, 0.355, 1) 0.4s;
+  animation: img-anim-left 1.3s forwards cubic-bezier(0.645, 0.045, 0.355, 1)
+    0.4s;
   opacity: 0;
 }
 
@@ -1007,21 +1006,27 @@ span a {
   }
 }
 @-webkit-keyframes letters-loading {
-  0%, 75%, 100% {
+  0%,
+  75%,
+  100% {
     opacity: 0;
     transform: rotateY(-90deg);
   }
-  25%, 50% {
+  25%,
+  50% {
     opacity: 1;
     transform: rotateY(0deg);
   }
 }
 @keyframes letters-loading {
-  0%, 75%, 100% {
+  0%,
+  75%,
+  100% {
     opacity: 0;
     transform: rotateY(-90deg);
   }
-  25%, 50% {
+  25%,
+  50% {
     opacity: 1;
     transform: rotateY(0deg);
   }
@@ -1480,19 +1485,19 @@ span a {
 
 @keyframes bgColor {
   0% {
-    background-color: #F2BA4C;
+    background-color: #f2ba4c;
   }
   25% {
-    background-color: #81F24C;
+    background-color: #81f24c;
   }
   50% {
-    background-color: #41F27D;
+    background-color: #41f27d;
   }
   75% {
-    background-color: #0500FF;
+    background-color: #0500ff;
   }
   100% {
-    background-color: #F2BA4C;
+    background-color: #f2ba4c;
   }
 }
 @keyframes animate-positive {
@@ -1658,7 +1663,7 @@ span a {
   pointer-events: none;
 }
 
-.animation-bubble div[class^=bubble-] {
+.animation-bubble div[class^="bubble-"] {
   height: 1px;
   width: 1px;
   position: absolute;
@@ -1912,7 +1917,7 @@ span a {
   z-index: 1;
   overflow: hidden;
   color: var(--white);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -1972,7 +1977,7 @@ span a {
   z-index: 1;
   overflow: hidden;
   color: var(--white);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -2032,7 +2037,7 @@ span a {
   z-index: 1;
   overflow: hidden;
   color: var(--title);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -2164,7 +2169,8 @@ span a {
 .ripple {
   position: relative;
 }
-.ripple::before, .ripple::after {
+.ripple::before,
+.ripple::after {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -2377,7 +2383,7 @@ img {
 }
 .navigation-controls .nav-item h4 {
   color: var(--title);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -2630,7 +2636,7 @@ img {
 }
 .counter-item-box__value {
   color: var(--white);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 80px;
   font-style: normal;
   font-weight: 600;
@@ -2765,7 +2771,7 @@ img {
 }
 .progress-wrap .progress-meta .title {
   color: var(--white);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -2775,7 +2781,7 @@ img {
 }
 .progress-wrap .progress-meta .title2 {
   color: var(--title);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -2785,7 +2791,7 @@ img {
 }
 .progress-wrap .progress-meta .percentage {
   color: var(--white);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -2795,7 +2801,7 @@ img {
 }
 .progress-wrap .progress-meta .percentage2 {
   color: var(--title);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -2940,7 +2946,7 @@ img {
   background-size: 0% 2px;
   color: transparent;
   -webkit-text-stroke: 1px #bcb8b1;
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 80px;
   font-style: normal;
   font-weight: 700;
@@ -2954,7 +2960,7 @@ img {
 }
 .marquee-item.style-2 .text-slider {
   color: var(--white);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 60px;
   font-style: normal;
   font-weight: 600;
@@ -3205,11 +3211,11 @@ img {
 .sidemenu-wrapper .sidemenu-content::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.1);
   box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.1);
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
 }
 .sidemenu-wrapper .sidemenu-content::-webkit-scrollbar {
   width: 2px;
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
 }
 .sidemenu-wrapper .widget {
   padding: 0;
@@ -3220,7 +3226,8 @@ img {
 .sidemenu-wrapper .newsletter-form .as-btn:hover {
   background: #264aa1;
 }
-.sidemenu-wrapper .newsletter-form .as-btn:hover:before, .sidemenu-wrapper .newsletter-form .as-btn:hover::after {
+.sidemenu-wrapper .newsletter-form .as-btn:hover:before,
+.sidemenu-wrapper .newsletter-form .as-btn:hover::after {
   display: none;
 }
 .sidemenu-wrapper.show {
@@ -3513,7 +3520,7 @@ img {
   color: var(--white);
   background: var(--title);
   border-radius: 6px;
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -3560,7 +3567,7 @@ img {
 .breadcrumb-heading h1 {
   color: var(--white);
   text-align: center;
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 80px;
   font-style: normal;
   line-height: 86px;
@@ -3817,30 +3824,31 @@ img {
 }
 
 /* background overlay clicks block na kare */
-.hero1-background-image{
+.hero1-background-image {
   pointer-events: none;
 }
 
 /* pagination ko upar lao aur clickable banao */
-.hero1 .swiper-pagination{
+.hero1 .swiper-pagination {
   position: absolute;
   z-index: 50;
   pointer-events: auto;
 }
-.mission-heading{
+.mission-heading {
   text-align: center;
-  margin-bottom:100px;
-  font-size: 60px;
+  margin-bottom: 100px;
+  font-size: 2.5rem;
   font-weight: 600;
 }
-.mission{
-  border-radius:10px ;
+.mission {
+  border-radius: 10px;
   background-color: rgb(255, 255, 255);
   padding: 30px 50px;
   /* box-shadow: 10px 10px 20px rgb(153, 153, 153); */
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
-.mission h4{
+.mission h4 {
   margin-bottom: 30px;
 }
 @media (max-width: 1399px) {
@@ -3897,7 +3905,7 @@ img {
 }
 .widget2-card-body-items-content__value {
   color: var(--white);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -3966,7 +3974,7 @@ img {
   padding: 14px 0;
   position: relative;
   z-index: 999;
-  background: #FFF;
+  background: #fff;
   box-shadow: 0px 2px 10px 2px rgba(243, 96, 76, 0.04);
 }
 .header-top-section.style1 .header-top-wrapper {
@@ -4072,7 +4080,7 @@ img {
   display: block;
   position: relative;
   color: var(--title);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -4080,7 +4088,8 @@ img {
   letter-spacing: -0.32px;
   text-transform: uppercase;
 }
-.main-menu a:hover, .main-menu a.active {
+.main-menu a:hover,
+.main-menu a.active {
   color: #264aa1;
 }
 .main-menu > ul > li {
@@ -4210,7 +4219,7 @@ img {
   display: block;
   position: relative;
   color: var(--white);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -4218,7 +4227,8 @@ img {
   letter-spacing: -0.32px;
   text-transform: uppercase;
 }
-.main-menu2 a:hover, .main-menu2 a.active {
+.main-menu2 a:hover,
+.main-menu2 a.active {
   color: #264aa1;
 }
 .main-menu2 > ul > li {
@@ -4391,7 +4401,7 @@ img {
   display: block;
   position: relative;
   color: var(--title);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -4399,7 +4409,8 @@ img {
   letter-spacing: -0.32px;
   text-transform: uppercase;
 }
-.sticky-wrapper2.sticky .main-menu2 a:hover, .sticky-wrapper2.sticky .main-menu2 a.active {
+.sticky-wrapper2.sticky .main-menu2 a:hover,
+.sticky-wrapper2.sticky .main-menu2 a.active {
   color: #264aa1;
 }
 .sticky-wrapper2.sticky .main-menu2 > ul > li {
@@ -4420,7 +4431,11 @@ img {
   display: inline-block;
   position: relative;
 }
-.sticky-wrapper2.sticky .main-menu2 ul li.menu-item-has-children > a.active:after {
+.sticky-wrapper2.sticky
+  .main-menu2
+  ul
+  li.menu-item-has-children
+  > a.active:after {
   color: var(--title);
 }
 .sticky-wrapper2.sticky .main-menu2 ul li.menu-item-has-children > a .svg path {
@@ -4471,13 +4486,24 @@ img {
 .sticky-wrapper2.sticky .main-menu2 ul .sub-menu li:not(:last-child) {
   margin-bottom: 5px;
 }
-.sticky-wrapper2.sticky .main-menu2 ul .sub-menu li.menu-item-has-children > a:after {
+.sticky-wrapper2.sticky
+  .main-menu2
+  ul
+  .sub-menu
+  li.menu-item-has-children
+  > a:after {
   content: "\f105";
   top: 1px;
   display: inline-block;
   color: var(--title);
 }
-.sticky-wrapper2.sticky .main-menu2 ul .sub-menu li.menu-item-has-children > a :hover:after {
+.sticky-wrapper2.sticky
+  .main-menu2
+  ul
+  .sub-menu
+  li.menu-item-has-children
+  > a
+  :hover:after {
   content: "\f105";
   transform: rotate(180deg);
   -webkit-transform: rotate(180deg);
@@ -4744,7 +4770,11 @@ img {
   box-shadow: 0 0 20px -8px rgba(173, 136, 88, 0.5);
   border-radius: 50%;
 }
-.global-mobile-menu ul .global-item-has-children > a .global-mean-expand:before {
+.global-mobile-menu
+  ul
+  .global-item-has-children
+  > a
+  .global-mean-expand:before {
   content: "\f067";
 }
 .global-mobile-menu ul .global-item-has-children > a:after {
@@ -4757,7 +4787,11 @@ img {
   float: right;
   margin-top: 1px;
 }
-.global-mobile-menu ul .global-item-has-children.global-active > a .global-mean-expand:before {
+.global-mobile-menu
+  ul
+  .global-item-has-children.global-active
+  > a
+  .global-mean-expand:before {
   content: "\f068";
 }
 .global-mobile-menu ul .global-item-has-children.global-active > a:after {
@@ -4780,7 +4814,16 @@ img {
 }
 .global-mobile-menu::-webkit-scrollbar-thumb {
   background-color: #264aa1;
-  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.3) 25%, transparent 20%, transparent 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 75%, transparent 75%, transparent);
+  background-image: -webkit-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.3) 25%,
+    transparent 20%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.3) 75%,
+    transparent 75%,
+    transparent
+  );
 }
 
 .global-menu-toggle {
@@ -4798,14 +4841,16 @@ img {
 .global-menu-toggle:hover {
   background-color: var(--white);
 }
-.global-menu-toggle.style-text, .global-menu-toggle.style-text-white {
+.global-menu-toggle.style-text,
+.global-menu-toggle.style-text-white {
   width: auto;
   height: auto;
   background-color: transparent;
   color: var(--title);
   font-size: 20px;
 }
-.global-menu-toggle.style-text i, .global-menu-toggle.style-text-white i {
+.global-menu-toggle.style-text i,
+.global-menu-toggle.style-text-white i {
   margin-right: 10px;
 }
 .global-menu-toggle.style-text-white {
@@ -4853,7 +4898,11 @@ img {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(272deg, rgba(38, 38, 38, 0) 2.59%, #262626 76.15%);
+  background: linear-gradient(
+    272deg,
+    rgba(38, 38, 38, 0) 2.59%,
+    #262626 76.15%
+  );
   z-index: 1;
 }
 .hero1-content {
@@ -4865,32 +4914,13 @@ img {
 }
 .hero1-content__title h1 {
   color: var(--white);
-  font-family: "Oswald", serif;
-  font-size: 50px;
+  font-size: 3.5rem;
   font-style: normal;
   font-weight: 600;
-  line-height: 60px;
-  letter-spacing: -2px;
-  text-transform: uppercase;
+
+  text-transform: capitalize;
 }
-@media (min-width: 768px) {
-  .hero1-content__title h1 {
-    font-size: 60px;
-    line-height: 65px;
-  }
-}
-@media (min-width: 992px) {
-  .hero1-content__title h1 {
-    font-size: 80px;
-    line-height: 90px;
-  }
-}
-@media (min-width: 1400px) {
-  .hero1-content__title h1 {
-    font-size: 70px;
-    line-height: 90px;
-  }
-}
+
 .hero1-content__desc {
   padding-right: 0px;
 }
@@ -4899,10 +4929,10 @@ img {
     padding-right: 80px;
   }
 }
-.hero1-content__subtitle h4{
+.hero1-content__subtitle h4 {
   color: rgb(255, 255, 255);
 }
-.hero1-bullets li{
+.hero1-bullets li {
   color: rgb(255, 255, 255);
 }
 .hero1-content__desc h4 {
@@ -4914,20 +4944,19 @@ img {
   line-height: 32px;
   text-transform: none;
 }
-.hero1-bottomline{
+.hero1-bottomline {
   color: white;
 }
-.main-whychooseus-content-checklist{
+.main-whychooseus-content-checklist {
   margin-top: 20px;
 }
-.main-whychooseus-checklist-item{
-margin-bottom: 20px;
+.main-whychooseus-checklist-item {
+  margin-bottom: 20px;
 }
-.main-whychooseus-checklist-item img{
-  background-color: white;
+.main-whychooseus-checklist-item img {
   margin-right: 20px;
 }
-.main-whychooseus-checklist-item__text{
+.main-whychooseus-checklist-item__text {
   color: white;
 }
 .hero1 .swiper-pagination {
@@ -4954,7 +4983,7 @@ margin-bottom: 20px;
   align-items: center;
   justify-content: center;
   background-color: rgba(255, 255, 255, 0.1);
-  color: #FFF;
+  color: #fff;
   font-family: "Plus Jakarta Sans", serif;
   font-size: 18px;
   font-style: normal;
@@ -4965,12 +4994,13 @@ margin-bottom: 20px;
   cursor: pointer;
   position: relative;
 }
-.hero1 .swiper-pagination-bullet:not(:first-child):not(:last-child)::before, .hero1 .swiper-pagination-bullet:not(:first-child):not(:last-child)::after {
+.hero1 .swiper-pagination-bullet:not(:first-child):not(:last-child)::before,
+.hero1 .swiper-pagination-bullet:not(:first-child):not(:last-child)::after {
   content: "";
   position: absolute;
   width: 1px;
   height: 30px;
-  background: linear-gradient(91deg, #264aa1 -1.28%, rgba(255, 255, 255, 0) 96.61%);
+  background: white;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -4989,7 +5019,7 @@ margin-bottom: 20px;
   align-items: center;
   justify-content: center;
   background-color: #264aa1;
-  color: #FFF;
+  color: #fff;
   font-family: "Plus Jakarta Sans", serif;
   font-size: 18px;
   font-style: normal;
@@ -5058,7 +5088,7 @@ margin-bottom: 20px;
 }
 .hero2-content__title h1 {
   color: var(--title);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 50px;
   font-style: normal;
   font-weight: 600;
@@ -5131,7 +5161,7 @@ margin-bottom: 20px;
 .hero2-thumb-counter__number {
   color: var(--white);
   text-align: center;
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 50px;
   font-style: normal;
   font-weight: 600;
@@ -5233,7 +5263,7 @@ margin-bottom: 20px;
 }
 .hero3__title h1 {
   color: #262626;
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 50px;
   font-style: normal;
   font-weight: 600;
@@ -5285,7 +5315,7 @@ margin-bottom: 20px;
 }
 .hero3-content-profile__title h6 {
   color: var(--title);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -5735,7 +5765,7 @@ margin-bottom: 20px;
 }
 .about3-content-box-details-text__numb {
   color: var(--title);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 60px;
   font-style: normal;
   font-weight: 600;
@@ -5745,7 +5775,7 @@ margin-bottom: 20px;
 }
 .about3-content-box-details-text__desc {
   color: var(--title);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
@@ -5814,7 +5844,13 @@ margin-bottom: 20px;
 .mean-container .mean-nav > ul .homemenu-items .homemenu .homemenu-thumb {
   position: relative;
 }
-.mean-container .mean-nav > ul .homemenu-items .homemenu .homemenu-thumb .demo-button {
+.mean-container
+  .mean-nav
+  > ul
+  .homemenu-items
+  .homemenu
+  .homemenu-thumb
+  .demo-button {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -5829,7 +5865,14 @@ margin-bottom: 20px;
   transition: all 0.4s ease-in-out;
   margin-top: 20px;
 }
-.mean-container .mean-nav > ul .homemenu-items .homemenu .homemenu-thumb .demo-button .theme-btn {
+.mean-container
+  .mean-nav
+  > ul
+  .homemenu-items
+  .homemenu
+  .homemenu-thumb
+  .demo-button
+  .theme-btn {
   padding: 12px 20px;
   color: var(--white) !important;
   width: initial;
@@ -5837,11 +5880,29 @@ margin-bottom: 20px;
   text-align: center;
   border-radius: 0;
 }
-.mean-container .mean-nav > ul .homemenu-items .homemenu .homemenu-thumb .demo-button .theme-btn:hover {
+.mean-container
+  .mean-nav
+  > ul
+  .homemenu-items
+  .homemenu
+  .homemenu-thumb
+  .demo-button
+  .theme-btn:hover {
   color: var(--white) !important;
 }
-.mean-container .mean-nav > ul .homemenu-items .homemenu .homemenu-thumb::before {
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(20, 19, 19, 0)), to(#5e5ef6));
+.mean-container
+  .mean-nav
+  > ul
+  .homemenu-items
+  .homemenu
+  .homemenu-thumb::before {
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(rgba(20, 19, 19, 0)),
+    to(#5e5ef6)
+  );
   background: linear-gradient(to bottom, rgba(99, 92, 92, 0) 0%, #252527 100%);
   background-repeat: no-repeat;
   background-size: cover;
@@ -5857,16 +5918,33 @@ margin-bottom: 20px;
   transition: all 0.3s ease-in-out;
   content: "";
 }
-.mean-container .mean-nav > ul .homemenu-items .homemenu .homemenu-thumb:hover::before {
+.mean-container
+  .mean-nav
+  > ul
+  .homemenu-items
+  .homemenu
+  .homemenu-thumb:hover::before {
   visibility: visible;
   opacity: 1;
 }
-.mean-container .mean-nav > ul .homemenu-items .homemenu .homemenu-thumb:hover .demo-button {
+.mean-container
+  .mean-nav
+  > ul
+  .homemenu-items
+  .homemenu
+  .homemenu-thumb:hover
+  .demo-button {
   opacity: 1;
   visibility: visible;
   margin-top: 0;
 }
-.mean-container .mean-nav > ul .homemenu-items .homemenu .homemenu-thumb:hover .homemenu-btn {
+.mean-container
+  .mean-nav
+  > ul
+  .homemenu-items
+  .homemenu
+  .homemenu-thumb:hover
+  .homemenu-btn {
   opacity: 1;
   visibility: visible;
   bottom: 50%;
@@ -5950,7 +6028,7 @@ margin-bottom: 20px;
 ----------------------------------------------*/
 .section-top__subtitle {
   color: #264aa1;
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -5961,7 +6039,7 @@ margin-bottom: 20px;
 }
 .section-top__subtitle2 {
   color: #264aa1;
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -5972,12 +6050,9 @@ margin-bottom: 20px;
 }
 .section-top__title {
   color: var(--title);
-  font-family: "Oswald", serif;
-  font-size: 60px;
+  font-size: 2.5rem;
   font-style: normal;
   font-weight: 600;
-  line-height: 66px;
-  letter-spacing: -1.2px;
   text-transform: uppercase;
 }
 @media (max-width: 1199px) {
@@ -6037,7 +6112,7 @@ margin-bottom: 20px;
 }
 .service1-card__title {
   color: var(--title);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
@@ -6057,7 +6132,7 @@ margin-bottom: 20px;
 }
 .service1-card__link {
   color: #264aa1;
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -6107,7 +6182,7 @@ margin-bottom: 20px;
 .service1-view__title {
   color: var(--title);
   text-align: center;
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 600;
@@ -6136,7 +6211,7 @@ margin-bottom: 20px;
 }
 .service2-card__title {
   color: var(--title);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
@@ -6156,7 +6231,7 @@ margin-bottom: 20px;
 }
 .service2-card__link {
   color: #264aa1;
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -6196,7 +6271,7 @@ margin-bottom: 20px;
 }
 .service3-card__title {
   color: var(--title);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 600;
@@ -6216,7 +6291,7 @@ margin-bottom: 20px;
 }
 .service3-card__link {
   color: #264aa1;
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -6385,7 +6460,7 @@ margin-bottom: 20px;
 .project1-card5__button {
   color: var(--white);
   background-color: #264aa1;
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -6863,7 +6938,7 @@ margin-bottom: 20px;
 }
 .contact3-card__info {
   color: var(--title);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 600;
@@ -6918,7 +6993,7 @@ margin-bottom: 20px;
 }
 .blog1-card-content__link {
   color: #264aa1;
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -6998,7 +7073,7 @@ margin-bottom: 20px;
 }
 .blog2-card-content__link {
   color: #264aa1;
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -7048,7 +7123,7 @@ margin-bottom: 20px;
 }
 .blog3-card-content__link {
   color: #264aa1;
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -7183,7 +7258,7 @@ margin-bottom: 20px;
 }
 .blog5-details-tagShare-tags__title {
   color: var(--title);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -7210,7 +7285,7 @@ margin-bottom: 20px;
 .blog5-details-tagShare-shareicon__title {
   padding-top: 10px;
   color: var(--title);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -7287,7 +7362,7 @@ margin-bottom: 20px;
 .blog5-details-comment-profile-content__reply {
   display: flex;
   color: #264aa1;
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -7345,7 +7420,7 @@ margin-bottom: 20px;
 .pricing1-item-card-price__value {
   color: var(--title);
   text-align: right;
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 60px;
   font-style: normal;
   font-weight: 600;
@@ -7688,7 +7763,7 @@ margin-bottom: 20px;
   z-index: 10;
 }
 .team1-card-thumb__icon img {
-  background: #FFF;
+  background: #fff;
   padding: 12px;
   border-radius: 12px;
 }
@@ -7904,7 +7979,7 @@ margin-bottom: 20px;
   color: var(--title);
   background-color: var(--gray1);
   font-size: 20px;
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-style: normal;
   font-weight: 600;
   line-height: 30px;
@@ -7917,7 +7992,10 @@ margin-bottom: 20px;
   background-image: url(../../assets/images/icon/plus-icon.svg);
   color: #264aa1;
 }
-.faq-content .accordion-item .accordion-header .accordion-button:not(.collapsed):after {
+.faq-content
+  .accordion-item
+  .accordion-header
+  .accordion-button:not(.collapsed):after {
   font-weight: 600;
   color: #264aa1;
   transform: rotate(45deg);
@@ -7975,7 +8053,7 @@ margin-bottom: 20px;
 }
 .timeline1-wrap-step__numb {
   color: var(--title);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 50px;
   font-style: normal;
   font-weight: 600;
@@ -8097,7 +8175,7 @@ margin-bottom: 20px;
   }
 }
 .footer1-wrapper-link__title {
-  color: #FFF;
+  color: #fff;
   font-family: "Plus Jakarta Sans", serif;
   font-size: 20px;
   font-style: normal;
@@ -8131,7 +8209,7 @@ margin-bottom: 20px;
   }
 }
 .footer1-wrapper-service__title {
-  color: #FFF;
+  color: #fff;
   font-family: "Plus Jakarta Sans", serif;
   font-size: 20px;
   font-style: normal;
@@ -8166,8 +8244,8 @@ margin-bottom: 20px;
   }
 }
 .footer1-wrapper-subscribe__title {
-  color: #FFF;
-  font-family: "Oswald", serif;
+  color: #fff;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
@@ -8315,7 +8393,7 @@ margin-bottom: 20px;
 }
 .footer2-wrapper-content__text h2 {
   color: var(--white);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 50px;
   font-style: normal;
   font-weight: 600;
@@ -8352,7 +8430,7 @@ margin-bottom: 20px;
 .footer2-wrapper-content__cta a {
   color: var(--white);
   background-color: #264aa1;
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -8409,7 +8487,7 @@ margin-bottom: 20px;
   }
 }
 .footer2-wrapper-link__title {
-  color: #FFF;
+  color: #fff;
   font-family: "Plus Jakarta Sans", serif;
   font-size: 20px;
   font-style: normal;
@@ -8443,7 +8521,7 @@ margin-bottom: 20px;
   }
 }
 .footer2-wrapper-service__title {
-  color: #FFF;
+  color: #fff;
   font-family: "Plus Jakarta Sans", serif;
   font-size: 20px;
   font-style: normal;
@@ -8477,7 +8555,7 @@ margin-bottom: 20px;
   }
 }
 .footer2-wrapper-contact__title {
-  color: #FFF;
+  color: #fff;
   font-family: "Plus Jakarta Sans", serif;
   font-size: 20px;
   font-style: normal;
@@ -8559,7 +8637,7 @@ margin-bottom: 20px;
 }
 .footer3-wrapper-content__text h2 {
   color: var(--white);
-  font-family: "Oswald", serif;
+  font-family: "Plus Jakarta Sans", serif;
   font-size: 50px;
   font-style: normal;
   font-weight: 600;
@@ -8706,4 +8784,6 @@ margin-bottom: 20px;
 }
 .footer3-wrapper-logoInfo-social__item a:hover svg path {
   fill: var(--white);
-}/*# sourceMappingURL=main.css.map */
+} /*# sourceMappingURL=main.css.map */
+
+/* Custom css */

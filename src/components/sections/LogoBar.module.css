@@ -1,0 +1,58 @@
+.wrap {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.rowH {
+  min-height: 110px; /* screenshot height feel */
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+.leftCol {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.leftText {
+  color: black !important;
+  font-size: 14px;
+  line-height: 1.3;
+  text-align: center;
+  width: 140px; /* same compact left block */
+}
+
+.dividerCol {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.divider {
+  width: 1px;
+  height: 54px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.sliderCol {
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* Swiper */
+.swiper {
+  width: 100%;
+}
+
+.slide {
+  width: auto !important; /* IMPORTANT for slidesPerView="auto" */
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: auto;
+  height: 130px;
+  object-fit: contain;
+  filter: brightness(1) contrast(1);
+  opacity: 0.95;
+}
