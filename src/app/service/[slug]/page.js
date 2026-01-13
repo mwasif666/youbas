@@ -1,27 +1,27 @@
 import Breadcrumb from "@/components/Breadcrumb";
-import ServiceDetailsSection from "@/components/sections/ServiceDetailsSection";
+import ProjectDetailsSection from "@/components/sections/ProjectDetailsSection";
+
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+  return [
+    { slug: "project-one" },
+    { slug: "project-two" },
+    { slug: "project-three" },
+    { slug: "project-four" },
+  ];
+}
 
 const menus = [
-    {
-        label: 'Our Service',
-        link: '/service',
-    },
-    {
-        label: 'Service Details',
-        link: '',
-    }
+  { label: "Our Project", link: "/project" },
+  { label: "Project Details", link: "" },
 ];
 
-export default function ServiceSlug() {
-    return (
-        <>
-            {/*===== Breadcrumb Section    S T A R T =====*/}
-            <Breadcrumb title={'Service Details'} menus={menus}/>
-            {/*===== Breadcrumb Section    END =====*/}
-
-            {/*===== Service Details Section    S T A R T =====*/}
-            <ServiceDetailsSection />
-            {/*===== Service Details Section    END =====*/}
-        </>
-    )
+export default function ProjectSlugPage({ params }) {
+  return (
+    <>
+      <Breadcrumb title={"Project Details"} menus={menus} />
+      <ProjectDetailsSection slug={params.slug} />
+    </>
+  );
 }
