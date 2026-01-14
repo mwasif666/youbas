@@ -72,7 +72,7 @@ export default function ProfilePage() {
       </div>
 
       {/* Content */}
-      <div className="container pb-5">
+      <div className="container pb-5 mt-5">
         <div className="row g-4">
           {/* Sidebar */}
           <div className="col-12 col-lg-4 col-xl-3">
