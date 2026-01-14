@@ -8126,6 +8126,7 @@ img {
 ----------------------------------------------*/
 .footer1 {
   position: relative;
+  background-color: #274ba0 !important;
 }
 .footer1-wrapper {
   display: flex;

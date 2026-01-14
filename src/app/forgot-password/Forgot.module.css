@@ -1,0 +1,86 @@
+.bg {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(
+      rgba(12, 14, 22, 0.55),
+      rgba(12, 14, 22, 0.55)
+    ),
+    url("https://img.freepik.com/free-photo/plain-dark-blue-wooden-wall-product-background_53876-108327.jpg?t=st=1768396427~exp=1768400027~hmac=90e79ab6c5f861fb11184b8f66a7e1944c6fde25c21298be5a6f1add29fada45");
+  background-size: cover;
+  background-position: center;
+  padding: 64px 20px;
+}
+.wrapper {
+  width: 100%;
+  max-width: 640px;
+}
+.panel {
+  padding: 34px;
+  border-radius: 14px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.035),
+    rgba(255, 255, 255, 0.015)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+.title {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 6px;
+  text-align: center;
+}
+.subtitle {
+  color: rgba(255, 255, 255, 0.72);
+  text-align: center;
+  margin: 0 0 18px;
+}
+.field {
+  margin-bottom: 12px;
+  width: 100%;
+}
+.label {
+  display: block;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.72);
+  margin-bottom: 6px;
+}
+.input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 6px;
+  border: none;
+  background: rgba(255, 255, 255, 0.96);
+  color: #222;
+}
+.cta {
+  width: 100%;
+  padding: 14px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(90deg, #244497, #4c74d8 60%);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+.footer {
+  text-align: center;
+  margin-top: 12px;
+}
+.footer a {
+  color: #fff;
+  text-decoration: underline;
+}
+@media (max-width: 640px) {
+  .panel {
+    padding: 24px;
+  }
+  .title {
+    font-size: 20px;
+  }
+}

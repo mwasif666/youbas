@@ -1,0 +1,359 @@
+.pageWrap {
+  background: #07090d;
+  min-height: 100vh;
+  color: #e9eef7;
+}
+
+/* Banner */
+.banner {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(
+      rgba(12, 14, 22, 0.55),
+      rgba(12, 14, 22, 0.55)
+    ),
+    url("https://img.freepik.com/free-photo/plain-dark-blue-wooden-wall-product-background_53876-108327.jpg?t=st=1768396427~exp=1768400027~hmac=90e79ab6c5f861fb11184b8f66a7e1944c6fde25c21298be5a6f1add29fada45");
+  background-size: cover;
+  background-position: center;
+  padding: 64px 20px;
+}
+
+.bannerInner {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 0.2px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 10px;
+}
+
+.bannerTitle {
+  margin: 0;
+  font-size: 34px;
+  line-height: 1.15;
+  font-weight: 800;
+}
+
+.bannerSub {
+  margin: 10px 0 0;
+  color: rgba(233, 238, 247, 0.75);
+  max-width: 640px;
+}
+
+.bannerRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatarBig {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.bannerMeta {
+  line-height: 1.2;
+}
+
+.bannerName {
+  font-weight: 700;
+}
+
+.bannerEmail {
+  color: rgba(233, 238, 247, 0.72);
+  font-size: 13px;
+  margin-top: 3px;
+}
+
+/* Cards */
+.card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.35);
+}
+
+.cardHeader {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.userName {
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.userEmail {
+  font-size: 13px;
+  color: rgba(233, 238, 247, 0.72);
+  margin-top: 4px;
+}
+
+.userMeta {
+  font-size: 12px;
+  color: rgba(233, 238, 247, 0.55);
+  margin-top: 6px;
+}
+
+/* Sidebar */
+.sidebarNav {
+  display: grid;
+  gap: 10px;
+}
+
+.sideBtn {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(233, 238, 247, 0.92);
+  padding: 12px 12px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  transition: transform 0.12s ease, background 0.12s ease,
+    border-color 0.12s ease;
+  cursor: pointer;
+  text-align: left;
+}
+
+.sideBtn:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.activeBtn {
+  background: rgba(13, 110, 253, 0.18);
+  border-color: rgba(13, 110, 253, 0.45);
+}
+
+.activeBtn .dot {
+  background: rgba(13, 110, 253, 0.95);
+}
+
+.sidebarFooter {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.logoutBtn {
+  border-radius: 14px !important;
+}
+
+/* Main */
+.topBar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.h2 {
+  margin: 0;
+  font-weight: 900;
+  letter-spacing: -0.2px;
+  font-size: 20px;
+}
+
+.muted {
+  margin: 8px 0 0;
+  color: rgba(233, 238, 247, 0.72);
+  font-size: 13px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Form */
+.label {
+  color: rgba(233, 238, 247, 0.84) !important;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.input,
+.textarea {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: rgba(233, 238, 247, 0.92) !important;
+  border-radius: 14px !important;
+  padding: 12px 12px !important;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: rgba(233, 238, 247, 0.45) !important;
+}
+
+.input:focus,
+.textarea:focus {
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.18) !important;
+  border-color: rgba(13, 110, 253, 0.55) !important;
+  outline: none !important;
+}
+
+.primaryBtn {
+  border-radius: 14px !important;
+  padding: 10px 14px !important;
+  font-weight: 700 !important;
+}
+
+.secondaryBtn {
+  border-radius: 14px !important;
+  padding: 10px 14px !important;
+  font-weight: 700 !important;
+}
+
+/* Orders table */
+.tableWrap {
+  padding-top: 4px;
+}
+
+.tableResponsive {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.table {
+  margin: 0 !important;
+  color: rgba(233, 238, 247, 0.92) !important;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.table thead th {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(233, 238, 247, 0.85);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.table tbody td {
+  border-color: rgba(255, 255, 255, 0.06) !important;
+  vertical-align: middle;
+}
+
+.orderId {
+  font-weight: 800;
+}
+
+.tdMuted {
+  color: rgba(233, 238, 247, 0.7);
+}
+
+/* Status badges */
+.status {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.ok {
+  background: rgba(25, 135, 84, 0.14);
+  border-color: rgba(25, 135, 84, 0.35);
+}
+
+.warn {
+  background: rgba(255, 193, 7, 0.14);
+  border-color: rgba(255, 193, 7, 0.35);
+}
+
+.bad {
+  background: rgba(220, 53, 69, 0.14);
+  border-color: rgba(220, 53, 69, 0.35);
+}
+
+.neutral {
+  background: rgba(108, 117, 125, 0.14);
+  border-color: rgba(108, 117, 125, 0.35);
+}
+
+.orderHelp {
+  margin-top: 12px;
+  font-size: 13px;
+  color: rgba(233, 238, 247, 0.72);
+}
+
+.link {
+  color: rgba(13, 110, 253, 0.95);
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/* Security note */
+.securityNote {
+  margin-top: 10px;
+  font-size: 13px;
+  color: rgba(233, 238, 247, 0.65);
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}

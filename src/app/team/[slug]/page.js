@@ -1,15 +1,11 @@
 import Breadcrumb from "@/components/Breadcrumb";
 import TeamSectionDetails from "@/components/sections/TeamSectionDetails";
+import { teamMembers } from "@/data/team";
 
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  return [
-    { slug: "member-1" },
-    { slug: "member-2" },
-    { slug: "member-3" },
-    { slug: "member-4" },
-  ];
+  return teamMembers.map((m) => ({ slug: `member-${m.id}` }));
 }
 
 const menus = [

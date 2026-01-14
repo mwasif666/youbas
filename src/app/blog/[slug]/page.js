@@ -1,10 +1,15 @@
 import Breadcrumb from "@/components/Breadcrumb";
 import BlogDetailsSection from "@/components/sections/BlogDetailsSection";
+import { blogPosts } from "@/data/blog";
 
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  return [{ slug: "details-1" }, { slug: "details-2" }, { slug: "details-3" }];
+  return blogPosts.map((post) => {
+    const parts = post.link?.split("/") || [];
+    const slug = parts[parts.length - 1] || `post-${post.id}`;
+    return { slug };
+  });
 }
 
 const menus = [
