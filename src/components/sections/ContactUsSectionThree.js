@@ -15,7 +15,7 @@ export default function ContactUsSectionThree() {
                             </div>
                             <p className="contact3-card__label">Phone number</p>
                             <h4 className="contact3-card__info">
-                                <a href="tel:44204577077">+44 204 577 0077</a>
+                                <a href="tel:+13312039861">+1 (331) 203-9861</a>
                             </h4>
                         </div>
                     </div>
@@ -28,7 +28,7 @@ export default function ContactUsSectionThree() {
                             </div>
                             <p className="contact3-card__label">Email address</p>
                             <h4 className="contact3-card__info">
-                                <a href="mailto:briza@gmail.com">Briza@gmail.com</a>
+                                <a href="mailto:contact@youbasecomservices.com">contact@youbasecomservices.com</a>
                             </h4>
                         </div>
                     </div>
@@ -41,8 +41,13 @@ export default function ContactUsSectionThree() {
                             </div>
                             <p className="contact3-card__label">Office Address</p>
                             <h4 className="contact3-card__info">
-                                <a href="https://www.google.com/maps/place/Washington+Ave,+New+York,+NY,+USA/@40.7127753,-74.0059728,17z/"
-                                   target="_blank">Washington Ave, NY</a>
+                                <a
+                                    href="https://www.google.com/maps/search/?api=1&query=537%20W%20Sugar%20Creek%20Rd%2C%20Charlotte%2C%20NC%2028213-6102"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    537 W Sugar Creek Rd, Charlotte, NC 28213-6102
+                                </a>
                             </h4>
                         </div>
                     </div>

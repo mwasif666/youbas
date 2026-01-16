@@ -1,46 +1,28 @@
 export const menuItems = [
-    {
-        title: "Home",
-        link: "#",
-        subMenu: [
-            { title: "Home One", link: "/" },
-            { title: "Home Two", link: "/home-2" },
-            { title: "Home Three", link: "/home-3" },
-        ],
-    },
-    {
-        title: "Pages",
-        link: "#",
-        subMenu: [
-            { title: "About", link: "/about" },
-            { title: "Service", link: "/service" },
-            { title: "Service Details", link: "/service/details" },
-            { title: "Team", link: "/team" },
-            { title: "Team Details", link: "/team/details" },
-            { title: "Pricing", link: "/pricing" },
-            { title: "FAQ", link: "/faq" },
-            { title: "404 Page", link: "/404" },
-        ],
-    },
-    {
-        title: "Portfolio",
-        link: "/project",
-        subMenu: [
-            { title: "Portfolio", link: "/project" },
-            { title: "Portfolio Details", link: "/project/details" },
-        ],
-    },
-    {
-        title: "Blog",
-        link: "#",
-        subMenu: [
-            { title: "Blog", link: "/blog" },
-            { title: "Blog Two", link: "/blog-2" },
-            { title: "Blog Details", link: "/blog/details" },
-        ],
-    },
-    {
-        title: "Contact",
-        link: "/contact",
-    },
+  {
+    title: "Home",
+    link: "/",
+  },
+  {
+    title: "Services",
+    link: "/services",
+    subMenu: [
+      { title: "Web Development", link: "/services/web-development" },
+      { title: "Marketplace Management", link: "/services/marketplace-management" },
+      { title: "Private Label", link: "/services/private-label" },
+      { title: "Product Sourcing", link: "/services/product-sourcing" },
+      { title: "DDP Logistics", link: "/services/ddp-logistics" },
+      { title: "Digital & Social Media", link: "/services/digital-social-media" },
+      { title: "Wholesale & Bulk", link: "/services/wholesale-bulk" },
+      { title: "Brand Expansion", link: "/services/brand-expansion" },
+    ],
+  },
+  {
+    title: "About",
+    link: "/about-us",
+  },
+  {
+    title: "Contact",
+    link: "/contact",
+  },
 ];

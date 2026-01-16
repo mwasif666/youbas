@@ -24,10 +24,18 @@ export default function HeroSectionOne() {
     try {
       setLoading(true);
       const res = await axios.get(
-        "https://yobas.innovationpixel.com/public/api/heroes"
+        "https://yobas.innovationpixel.com/public/api/heroes",
+        {
+          validateStatus: (status) => status < 500,
+        }
       );
 
-      const data = res.data?.data || [];
+      if (res.status === 401) {
+        setSlides([]);
+        return;
+      }
+
+      const data = Array.isArray(res.data?.data) ? res.data.data : [];
       setSlides(data);
 
       if (data.length) {
@@ -37,6 +45,7 @@ export default function HeroSectionOne() {
       }
     } catch (err) {
       console.error("Hero load failed", err);
+      setSlides([]);
     } finally {
       setLoading(false);
     }
@@ -110,11 +119,6 @@ export default function HeroSectionOne() {
                       <h1>{slide.title}</h1>
                       <p>{slide.description}</p>
 
-                      <div className="btn-wrapper pt-40">
-                        <Link href="/contact" className="theme-btn style1">
-                          Get Free Consultation
-                        </Link>
-                      </div>
                     </div>
                   </div>
                 </div>

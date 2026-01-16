@@ -39,12 +39,17 @@ export default function ContactUsSectionFour() {
 
       const res = await axios.post(
         "https://yobas.innovationpixel.com/public/api/save-request",
-        formData
+        formData,
+        {
+          validateStatus: (status) => status < 500,
+        }
       );
 
       if (res.status === 200) {
         setSuccessMsg("Message sent successfully!");
         setForm({ name: "", email: "", phone: "", message: "" });
+      } else if (res.status === 401) {
+        setErrorMsg("Unauthorized request. Please try again later.");
       } else {
         setErrorMsg("Failed to send message");
       }

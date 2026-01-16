@@ -8126,15 +8126,24 @@ img {
 ----------------------------------------------*/
 .footer1 {
   position: relative;
-  background-color: #274ba0 !important;
+  background-color: #1c3c95 !important;
 }
 .footer1-wrapper {
   display: flex;
   justify-content: space-between;
   position: relative;
 }
+.footer1-wrapper .row {
+  width: 100%;
+  align-items: flex-start;
+}
 .footer1-wrapper-logoInfo__logo {
   padding-bottom: 15px;
+}
+.footer1-wrapper-logoInfo__logo img {
+  width: 150px;
+  height: 48px;
+  object-fit: contain;
 }
 .footer1-wrapper-logoInfo__desc {
   color: var(--gray1);

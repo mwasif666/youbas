@@ -1,8 +1,7 @@
 'use client'
 import Link from "next/link";
 import styles from "./ServiceSectionOne.module.css";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 
 import {
   FiGlobe,
@@ -15,7 +14,6 @@ import {
   FiUsers,
   FiBox,
 } from "react-icons/fi";
-import Loading from "./Loading";
 
 const pickIcon = (title = "") => {
   const t = title.toLowerCase();
@@ -48,38 +46,67 @@ const pickIcon = (title = "") => {
 };
 
 export default function ServiceSectionOne() {
-  const [loading, setLoading] = useState(true);
-  const [services, setServices] = useState([]);
-
-  const getServices = async () => {
-    try {
-      setLoading(true);
-      const res = await axios.get(
-        "https://yobas.innovationpixel.com/public/api/services"
-      );
-      const data = res.data?.data || res.data || [];
-
-      setServices(data);
-    } catch (error) {
-      console.error("Failed to load services", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    getServices();
-  }, []);
-
-  if (loading) {
-    return (
-      <section className={styles.section}>
-        <div className="container text-center py-5">
-          <Loading/>
-        </div>
-      </section>
-    );
-  }
+  const services = useMemo(
+    () => [
+      {
+        id: "web-dev",
+        title: "Web Development",
+        description:
+          "High-converting storefronts, portals, and custom web systems.",
+        link: "/services/web-development",
+      },
+      {
+        id: "marketplace",
+        title: "Marketplace Management",
+        description:
+          "End-to-end management for Amazon, eBay, Walmart, and more.",
+        link: "/services/marketplace-management",
+      },
+      {
+        id: "private-label",
+        title: "Private Label",
+        description:
+          "Branding, packaging, compliance, and launch support.",
+        link: "/services/private-label",
+      },
+      {
+        id: "sourcing",
+        title: "Product Sourcing",
+        description:
+          "Factory-direct sourcing with transparent pricing and QA.",
+        link: "/services/product-sourcing",
+      },
+      {
+        id: "ddp",
+        title: "DDP Logistics",
+        description:
+          "China to USA / UK / AU shipping with duties handled.",
+        link: "/services/ddp-logistics",
+      },
+      {
+        id: "digital",
+        title: "Digital & Social Media",
+        description:
+          "Content, ads, and growth systems for social platforms.",
+        link: "/services/digital-social-media",
+      },
+      {
+        id: "wholesale",
+        title: "Wholesale & Bulk",
+        description:
+          "Bulk purchasing strategy and supplier negotiations.",
+        link: "/services/wholesale-bulk",
+      },
+      {
+        id: "expansion",
+        title: "Brand Expansion",
+        description:
+          "Multi-platform scaling and operational playbooks.",
+        link: "/services/brand-expansion",
+      },
+    ],
+    []
+  );
 
   return (
     <section className={styles.section}>
@@ -98,7 +125,7 @@ export default function ServiceSectionOne() {
         {/* Bootstrap row */}
         <div className="row justify-content-center g-3">
           {services.map((service) => {
-            const Icon = service.icon;
+            const Icon = pickIcon(service.title);
 
             return (
               <div key={service.id} className="col-12 col-md-6 col-lg-4">

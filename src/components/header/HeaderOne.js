@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import logoWhite from "@/assets/images/logo/logo.png";
 import HeaderMenu from "@/components/header/HeaderMenu";
 import { useAppContext } from "@/context";
@@ -8,6 +10,53 @@ import styles from "./HeaderOne.module.css";
 
 export default function HeaderOne() {
   const { openMobileMenuMenu } = useAppContext();
+  const [profileOpen, setProfileOpen] = useState(false);
+  const [user, setUser] = useState(null);
+  const profileRef = useRef(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const loadUser = () => {
+      try {
+        const raw = localStorage.getItem("yobasUser");
+        setUser(raw ? JSON.parse(raw) : null);
+      } catch (error) {
+        setUser(null);
+      }
+    };
+
+    loadUser();
+
+    const handleOutside = (event) => {
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setProfileOpen(false);
+      }
+    };
+
+    const handleUserUpdate = () => loadUser();
+
+    document.addEventListener("mousedown", handleOutside);
+    window.addEventListener("yobas:user", handleUserUpdate);
+    window.addEventListener("storage", handleUserUpdate);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutside);
+      window.removeEventListener("yobas:user", handleUserUpdate);
+      window.removeEventListener("storage", handleUserUpdate);
+    };
+  }, []);
+
+  const handleLogout = () => {
+    try {
+      localStorage.removeItem("yobasUser");
+      window.dispatchEvent(new Event("yobas:user"));
+    } catch (error) {
+      // No-op: logout state still updates below.
+    }
+    setUser(null);
+    setProfileOpen(false);
+    router.push("/");
+  };
 
   return (
     <header className={`global-header header-layout header-bg-1 ${styles.header}`}>
@@ -19,7 +68,13 @@ export default function HeaderOne() {
               <div className="col-auto">
                 <div className="header-logo">
                   <Link href="/">
-                    <img src={logoWhite.src} className="svg" alt="logo" />
+                    <img
+                      src={logoWhite.src}
+                      className={styles.logo}
+                      alt="logo"
+                      width="150"
+                      height="48"
+                    />
                   </Link>
                 </div>
               </div>
@@ -42,12 +97,56 @@ export default function HeaderOne() {
               </div>
 
               <div className="col-auto d-none d-xl-block">
-                <div className="header-button">
-                  <div className="btn-wrapper">
-                    <Link className={`theme-btn style2 ${styles.contactBtn}`} href="/contact">
-                      Contact Us
+                <div className={styles.rightActions}>
+                  {user ? (
+                    <div className={styles.profileWrap} ref={profileRef}>
+                      <button
+                        type="button"
+                        className={styles.profileBtn}
+                        onClick={() => setProfileOpen((prev) => !prev)}
+                        aria-expanded={profileOpen}
+                      >
+                        <span className={styles.avatar}>
+                          {(user?.name || user?.email || "U")
+                            .charAt(0)
+                            .toUpperCase()}
+                        </span>
+                        <span className={styles.profileLabel}>
+                          {user?.name || user?.email}
+                        </span>
+                        <i
+                          className={`fa-solid fa-chevron-down ${styles.chevron}`}
+                        />
+                      </button>
+
+                      <div
+                        className={`${styles.profileMenu} ${
+                          profileOpen ? styles.profileOpen : ""
+                        }`}
+                      >
+                        <Link
+                          href="/order?tab=orders"
+                          className={styles.menuItem}
+                        >
+                          Orders
+                        </Link>
+                        <Link href="/order" className={styles.menuItem}>
+                          Account
+                        </Link>
+                        <button
+                          type="button"
+                          className={`${styles.menuItem} ${styles.logout}`}
+                          onClick={handleLogout}
+                        >
+                          Logout
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <Link href="/login" className={styles.loginLink}>
+                      Login
                     </Link>
-                  </div>
+                  )}
                 </div>
               </div>
 

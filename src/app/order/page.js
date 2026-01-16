@@ -1,52 +1,90 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./Order.module.css";
 
+const ORDERS_ENDPOINT = "https://yobas.innovationpixel.com/public/api/orders";
+
 export default function ProfilePage() {
-  const [activeTab, setActiveTab] = useState("profile");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const [user, setUser] = useState(null);
+  const [orders, setOrders] = useState([]);
+  const [ordersLoading, setOrdersLoading] = useState(false);
+  const [ordersError, setOrdersError] = useState("");
+  const [activeTab, setActiveTab] = useState(() => {
+    const tab = searchParams.get("tab");
+    return isValidTab(tab) ? tab : "profile";
+  });
 
-  // Dummy data (replace with your API / auth context)
-  const user = useMemo(
-    () => ({
-      name: "John Doe",
-      email: "john@example.com",
-      phone: "+92 300 0000000",
-      address: "Lahore, Pakistan",
-      memberSince: "Jan 2025",
-      avatarLetter: "J",
-    }),
-    []
-  );
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem("yobasUser");
+      const parsed = raw ? JSON.parse(raw) : null;
+      if (!parsed) {
+        router.replace("/login");
+        return;
+      }
+      setUser(parsed);
+    } catch (error) {
+      router.replace("/login");
+    }
+  }, [router]);
 
-  const orders = useMemo(
-    () => [
-      {
-        id: "ORD-10021",
-        date: "2026-01-10",
-        status: "Delivered",
-        total: "$129.00",
-        items: 3,
-      },
-      {
-        id: "ORD-10018",
-        date: "2026-01-04",
-        status: "Processing",
-        total: "$49.99",
-        items: 1,
-      },
-      {
-        id: "ORD-10011",
-        date: "2025-12-22",
-        status: "Cancelled",
-        total: "$0.00",
-        items: 2,
-      },
-    ],
-    []
-  );
+  useEffect(() => {
+    const tab = searchParams.get("tab");
+    if (isValidTab(tab) && tab !== activeTab) {
+      setActiveTab(tab);
+    }
+  }, [searchParams, activeTab]);
+
+  useEffect(() => {
+    if (!user?.id) {
+      setOrders([]);
+      return;
+    }
+
+    const fetchOrders = async () => {
+      setOrdersLoading(true);
+      setOrdersError("");
+
+      try {
+        const response = await fetch(`${ORDERS_ENDPOINT}/${user.id}`);
+        const payload = await response.json().catch(() => null);
+
+        if (!response.ok) {
+          setOrdersError(
+            payload?.message || "Unable to load orders. Please try again."
+          );
+          setOrders([]);
+          return;
+        }
+
+        const data = payload?.data || payload?.orders || payload || [];
+        setOrders(Array.isArray(data) ? data : []);
+      } catch (error) {
+        setOrdersError("Network error while loading orders.");
+        setOrders([]);
+      } finally {
+        setOrdersLoading(false);
+      }
+    };
+
+    fetchOrders();
+  }, [user?.id]);
 
   const isActive = (key) => (activeTab === key ? styles.activeBtn : "");
+
+  const handleLogout = () => {
+    try {
+      localStorage.removeItem("yobasUser");
+      window.dispatchEvent(new Event("yobas:user"));
+    } catch (error) {
+      // Ignore storage errors.
+    }
+    router.push("/");
+  };
 
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
@@ -78,12 +116,14 @@ export default function ProfilePage() {
           <div className="col-12 col-lg-4 col-xl-3">
             <div className={styles.card}>
               <div className={styles.cardHeader}>
-                <div className={styles.avatar}>{user.avatarLetter}</div>
+                <div className={styles.avatar}>
+                  {(user?.name || user?.email || "U").charAt(0).toUpperCase()}
+                </div>
                 <div>
-                  <div className={styles.userName}>{user.name}</div>
-                  <div className={styles.userEmail}>{user.email}</div>
+                  <div className={styles.userName}>{user?.name || "User"}</div>
+                  <div className={styles.userEmail}>{user?.email || ""}</div>
                   <div className={styles.userMeta}>
-                    Member since {user.memberSince}
+                    Member since Jan 2025
                   </div>
                 </div>
               </div>
@@ -121,6 +161,7 @@ export default function ProfilePage() {
                 <button
                   type="button"
                   className={`btn btn-outline-light w-100 ${styles.logoutBtn}`}
+                  onClick={handleLogout}
                 >
                   Logout
                 </button>
@@ -151,7 +192,7 @@ export default function ProfilePage() {
                       </label>
                       <input
                         className={`form-control ${styles.input}`}
-                        defaultValue={user.name}
+                        defaultValue={user?.name || ""}
                         placeholder="Your name"
                       />
                     </div>
@@ -163,7 +204,7 @@ export default function ProfilePage() {
                       <input
                         type="email"
                         className={`form-control ${styles.input}`}
-                        defaultValue={user.email}
+                        defaultValue={user?.email || ""}
                         placeholder="you@example.com"
                       />
                     </div>
@@ -174,7 +215,7 @@ export default function ProfilePage() {
                       </label>
                       <input
                         className={`form-control ${styles.input}`}
-                        defaultValue={user.phone}
+                        defaultValue={user?.phone || ""}
                         placeholder="+92..."
                       />
                     </div>
@@ -185,7 +226,7 @@ export default function ProfilePage() {
                       </label>
                       <input
                         className={`form-control ${styles.input}`}
-                        defaultValue={user.address}
+                        defaultValue={user?.address || ""}
                         placeholder="City, Country"
                       />
                     </div>
@@ -235,39 +276,60 @@ export default function ProfilePage() {
                 </div>
 
                 <div className={styles.tableWrap}>
-                  <div className={`table-responsive ${styles.tableResponsive}`}>
-                    <table className={`table ${styles.table}`}>
-                      <thead>
-                        <tr>
-                          <th>Order ID</th>
-                          <th>Date</th>
-                          <th>Items</th>
-                          <th>Status</th>
-                          <th className="text-end">Total</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {orders.map((o) => (
-                          <tr key={o.id}>
-                            <td className={styles.orderId}>{o.id}</td>
-                            <td className={styles.tdMuted}>{o.date}</td>
-                            <td className={styles.tdMuted}>{o.items}</td>
-                            <td>
-                              <span
-                                className={`${styles.status} ${statusClass(
-                                  o.status,
-                                  styles
-                                )}`}
-                              >
-                                {o.status}
-                              </span>
-                            </td>
-                            <td className="text-end">{o.total}</td>
+                  {ordersLoading && (
+                    <div className={styles.muted}>Loading orders...</div>
+                  )}
+                  {ordersError && (
+                    <div className={styles.muted}>{ordersError}</div>
+                  )}
+
+                  {!ordersLoading && !ordersError && orders.length === 0 && (
+                    <div className={styles.muted}>No orders found.</div>
+                  )}
+
+                  {!ordersLoading && !ordersError && orders.length > 0 && (
+                    <div className={`table-responsive ${styles.tableResponsive}`}>
+                      <table className={`table ${styles.table}`}>
+                        <thead>
+                          <tr>
+                            <th>Order ID</th>
+                            <th>Date</th>
+                            <th>Items</th>
+                            <th>Status</th>
+                            <th className="text-end">Total</th>
                           </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+                        </thead>
+                        <tbody>
+                          {orders.map((o, index) => (
+                            <tr key={o.id || o.order_id || index}>
+                              <td className={styles.orderId}>
+                                {o.id || o.order_id || "—"}
+                              </td>
+                              <td className={styles.tdMuted}>
+                                {o.date || o.created_at || "—"}
+                              </td>
+                              <td className={styles.tdMuted}>
+                                {o.items || o.total_items || "—"}
+                              </td>
+                              <td>
+                                <span
+                                  className={`${styles.status} ${statusClass(
+                                    o.status || o.order_status,
+                                    styles
+                                  )}`}
+                                >
+                                  {o.status || o.order_status || "Pending"}
+                                </span>
+                              </td>
+                              <td className="text-end">
+                                {o.total || o.total_amount || "—"}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
 
                   <div className={styles.orderHelp}>
                     Need help with an order?{" "}
@@ -370,4 +432,8 @@ function statusClass(status, styles) {
   if (s.includes("process")) return styles.warn;
   if (s.includes("cancel")) return styles.bad;
   return styles.neutral;
+}
+
+function isValidTab(tab) {
+  return ["profile", "orders", "password"].includes(tab);
 }
