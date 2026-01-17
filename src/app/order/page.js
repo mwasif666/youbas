@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./Order.module.css";
 
 const ORDERS_ENDPOINT = "https://yobas.innovationpixel.com/public/api/orders";
 
-export default function ProfilePage() {
+function ProfilePageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [user, setUser] = useState(null);
@@ -55,7 +55,7 @@ export default function ProfilePage() {
 
         if (!response.ok) {
           setOrdersError(
-            payload?.message || "Unable to load orders. Please try again."
+            payload?.message || "Unable to load orders. Please try again.",
           );
           setOrders([]);
           return;
@@ -122,9 +122,7 @@ export default function ProfilePage() {
                 <div>
                   <div className={styles.userName}>{user?.name || "User"}</div>
                   <div className={styles.userEmail}>{user?.email || ""}</div>
-                  <div className={styles.userMeta}>
-                    Member since Jan 2025
-                  </div>
+                  <div className={styles.userMeta}>Member since Jan 2025</div>
                 </div>
               </div>
 
@@ -288,7 +286,9 @@ export default function ProfilePage() {
                   )}
 
                   {!ordersLoading && !ordersError && orders.length > 0 && (
-                    <div className={`table-responsive ${styles.tableResponsive}`}>
+                    <div
+                      className={`table-responsive ${styles.tableResponsive}`}
+                    >
                       <table className={`table ${styles.table}`}>
                         <thead>
                           <tr>
@@ -315,7 +315,7 @@ export default function ProfilePage() {
                                 <span
                                   className={`${styles.status} ${statusClass(
                                     o.status || o.order_status,
-                                    styles
+                                    styles,
                                   )}`}
                                 >
                                   {o.status || o.order_status || "Pending"}
@@ -436,4 +436,12 @@ function statusClass(status, styles) {
 
 function isValidTab(tab) {
   return ["profile", "orders", "password"].includes(tab);
+}
+
+export default function ProfilePage() {
+  return (
+    <Suspense fallback={<div className="container py-5">Loading...</div>}>
+      <ProfilePageContent />
+    </Suspense>
+  );
 }
