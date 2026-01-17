@@ -4,8 +4,10 @@
 }
 
 .hero {
-  padding: 110px 0 70px;
-  background: linear-gradient(135deg, #eaf0ff, #ffffff 55%);
+  padding: 120px 0 80px;
+  background:
+    radial-gradient(circle at top, #eef3ff 0%, #ffffff 55%),
+    linear-gradient(135deg, #eaf0ff, #ffffff 65%);
 }
 
 .heroGrid {
@@ -19,7 +21,8 @@
   display: inline-flex;
   padding: 6px 14px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
+  background: #1c3c95;
+  color: #ffffff;
   font-size: 13px;
   letter-spacing: 0.3px;
   margin-bottom: 16px;
@@ -34,6 +37,23 @@
 .subtitle {
   color: #3a3a3a;
   max-width: 560px;
+}
+
+.heroHighlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.heroHighlight {
+  background: #ffffff;
+  border: 1px solid #e3e7f1;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1c3c95;
 }
 
 .heroImage {
@@ -62,6 +82,11 @@
 
 .bodyText {
   color: #3d3d3d;
+}
+
+.sectionNote {
+  color: #4a4a4a;
+  margin-top: 12px;
 }
 
 .bullets {
@@ -111,7 +136,58 @@
 }
 
 .sectionAlt {
-  padding: 0 0 80px;
+  padding: 80px 0 80px;
+}
+
+.sectionHeader {
+  max-width: 720px;
+  margin-bottom: 26px;
+}
+
+.sectionLead {
+  color: #4a4a4a;
+  margin-top: 10px;
+}
+
+.processSection {
+  padding: 60px 0 70px;
+  background: #f9fafc;
+  border-top: 1px solid #eef1f6;
+  border-bottom: 1px solid #eef1f6;
+}
+
+.processGrid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.processCard {
+  background: #ffffff;
+  border: 1px solid #e5e9f2;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+}
+
+.processStep {
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #1c3c95;
+  margin-bottom: 12px;
+}
+
+.cardsHeader {
+  max-width: 640px;
+  margin-bottom: 24px;
+}
+
+.cardsIntro {
+  color: #3d3d3d;
+  margin-top: 8px;
 }
 
 .cards {
@@ -161,4 +237,9 @@
   border-radius: 22px;
   background: #f4f6fb;
   border: 1px solid #e5e9f2;
+}
+
+.ctaNote {
+  margin-top: 12px;
+  color: #4a4a4a;
 }
