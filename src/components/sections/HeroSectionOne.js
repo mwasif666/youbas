@@ -4,12 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import axios from "axios";
-import Link from "next/link";
-
+import Loading from "./Loading";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import Loading from "./Loading";
 
 export default function HeroSectionOne() {
   const swiperRef = useRef(null);
@@ -34,13 +32,12 @@ export default function HeroSectionOne() {
         setSlides([]);
         return;
       }
-
-      const data = Array.isArray(res.data?.data) ? res.data.data : [];
+      const data = Array.isArray(res.data?.data.items) ? res.data.data.items : [];
       setSlides(data);
 
       if (data.length) {
         setBgImage(
-          `https://yobas.innovationpixel.com/public/storage/${data[0].image}`
+          `https://yobas.innovationpixel.com/public/storage/${data[0].image.path}`
         );
       }
     } catch (err) {
@@ -69,7 +66,7 @@ export default function HeroSectionOne() {
     }, Number(currentSlide.time) || 4000);
 
     setBgImage(
-      `https://yobas.innovationpixel.com/public/storage/${currentSlide.image}`
+      `https://yobas.innovationpixel.com/public/storage/${currentSlide.image.path}`
     );
   };
 
@@ -116,9 +113,8 @@ export default function HeroSectionOne() {
                 <div className="row">
                   <div className="col-lg-8 col-xl-7">
                     <div className="hero1-content">
-                      <h1>{slide.title}</h1>
-                      <p>{slide.description}</p>
-
+                      <h1 style={{color:"white"}}>{slide.title}</h1>
+                      <p style={{color:"white"}} dangerouslySetInnerHTML={{ __html: slide.description }} />
                     </div>
                   </div>
                 </div>
