@@ -9,8 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@fancyapps/ui": "^5.0.36",
+    "@mui/material": "^7.3.7",
     "@popperjs/core": "^2.11.8",
+    "antd": "^5.16.2",
     "axios": "^1.13.2",
     "bootstrap": "^5.3.3",
     "next": "15.2.1",

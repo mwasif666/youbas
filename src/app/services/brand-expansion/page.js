@@ -1,4 +1,5 @@
 import ServiceDetailLayout from "@/components/ServiceDetailLayout";
+import BrandExpansionTrialCta from "./TrialCta";
 import styles from "./page.module.css";
 
 const content = {
@@ -81,5 +82,10 @@ const content = {
 };
 
 export default function BrandExpansionPage() {
-  return <ServiceDetailLayout styles={styles} content={content} />;
+  return (
+    <>
+      <ServiceDetailLayout styles={styles} content={content} />
+      <BrandExpansionTrialCta />
+    </>
+  );
 }

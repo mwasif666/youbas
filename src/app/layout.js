@@ -14,6 +14,7 @@ import "@/assets/css/main.css";
 import "@/assets/css/meanmenu.css";
 import "@/assets/css/splitting.css";
 import "@/assets/css/swiper-bundle.min.css";
+import "@/assets/css/antd-reset.css";
 
 
 // import "@/assets/scss/main.scss";

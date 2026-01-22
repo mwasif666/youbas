@@ -10,6 +10,7 @@ import TestimonialSectionOne from "@/components/sections/TestimonialSectionOne";
 import BlogSectionOne from "@/components/sections/BlogSectionOne";
 import PricingSection from "@/components/sections/PricingSection";
 import LogoBar from "@/components/sections/logo";
+import BrandExpansionTrialCta from "@/app/services/brand-expansion/TrialCta";
 
 export const metadata = {
   title: "Home 1 | Briza - Creative & Digital Agency Next Js Template",
@@ -59,6 +60,8 @@ export default function Home() {
       {/*===== Blog Section    S T A R T =====*/}
       {/* <BlogSectionOne /> */}
       {/*===== Blog Section    END =====*/}
+
+      <BrandExpansionTrialCta />
     </>
   );
 }
