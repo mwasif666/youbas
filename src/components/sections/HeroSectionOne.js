@@ -72,7 +72,7 @@ export default function HeroSectionOne() {
 
   if (loading) {
     return (
-      <section>
+      <section style={{marginTop:"120px"}}>
         <div className="container text-center py-5">
           <Loading />
         </div>

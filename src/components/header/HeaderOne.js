@@ -12,10 +12,12 @@ export default function HeaderOne() {
   const { openMobileMenuMenu } = useAppContext();
   const [profileOpen, setProfileOpen] = useState(false);
   const [user, setUser] = useState(null);
+  const [mounted, setMounted] = useState(false);
   const profileRef = useRef(null);
   const router = useRouter();
 
   useEffect(() => {
+    setMounted(true);
     const loadUser = () => {
       try {
         const raw = localStorage.getItem("yobasUser");
@@ -98,7 +100,7 @@ export default function HeaderOne() {
 
               <div className="col-auto d-none d-xl-block">
                 <div className={styles.rightActions}>
-                  {user ? (
+                  {mounted && user ? (
                     <div className={styles.profileWrap} ref={profileRef}>
                       <button
                         type="button"

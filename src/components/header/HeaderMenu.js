@@ -10,11 +10,11 @@ export default function HeaderMenu() {
 
             <li className="menu-item-has-children">
                 <Link href='/services'>Services
-                    <span className="dropdown-icon">
+                    {/* <span className="dropdown-icon">
                         <img className="svg" src={iconWhite.src} alt="icon"/>
-                    </span>
+                    </span> */}
                 </Link>
-                <ul className="sub-menu">
+                {/* <ul className="sub-menu">
                     <li><Link href='/services/web-development'>Web Development</Link></li>
                     <li><Link href='/services/marketplace-management'>Marketplace Management</Link></li>
                     <li><Link href='/services/private-label'>Private Label</Link></li>
@@ -23,7 +23,7 @@ export default function HeaderMenu() {
                     <li><Link href='/services/digital-social-media'>Digital & Social Media</Link></li>
                     <li><Link href='/services/wholesale-bulk'>Wholesale & Bulk</Link></li>
                     <li><Link href='/services/brand-expansion'>Brand Expansion</Link></li>
-                </ul>
+                </ul> */}
             </li>
 
             <li><Link href='/about-us'>About</Link></li>

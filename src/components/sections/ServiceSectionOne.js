@@ -1,4 +1,5 @@
-'use client'
+"use client";
+
 import Link from "next/link";
 import styles from "./ServiceSectionOne.module.css";
 import axios from "axios";
@@ -15,6 +16,7 @@ import {
   FiUsers,
   FiBox,
 } from "react-icons/fi";
+
 import Loading from "./Loading";
 
 const pickIcon = (title = "") => {
@@ -51,31 +53,29 @@ export default function ServiceSectionOne() {
   const [loading, setLoading] = useState(true);
   const [services, setServices] = useState([]);
 
-  const getServices = async () => {
-    try {
-      setLoading(true);
-      const res = await axios.get(
-        "https://yobas.innovationpixel.com/public/api/services"
-      );
-      const data = res.data?.data || res.data || [];
-
-      setServices(data);
-    } catch (error) {
-      console.error("Failed to load services", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const getServices = async () => {
+      try {
+        setLoading(true);
+        const res = await axios.get(
+          "https://yobas.innovationpixel.com/public/api/services"
+        );
+        setServices(res.data?.data.items || []);
+      } catch (error) {
+        console.error("Failed to load services", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     getServices();
   }, []);
 
   if (loading) {
     return (
-      <section className={styles.section}>
+      <section style={{minHeight: "80vh"}} className={styles.section}>
         <div className="container text-center py-5">
-          <Loading/>
+          <Loading />
         </div>
       </section>
     );
@@ -83,9 +83,7 @@ export default function ServiceSectionOne() {
 
   return (
     <section className={styles.section}>
-      {/* Bootstrap container */}
       <div className={`container ${styles.container}`}>
-        {/* Header */}
         <div className={styles.header}>
           <div className={styles.kicker}>OUR SERVICES</div>
           <h2 className={styles.heading}>SERVICES WE OFFER TO CUSTOMERS</h2>
@@ -95,10 +93,9 @@ export default function ServiceSectionOne() {
           </p>
         </div>
 
-        {/* Bootstrap row */}
         <div className="row justify-content-center g-3">
           {services.map((service) => {
-            const Icon = service.icon;
+            const Icon = pickIcon(service.title);
 
             return (
               <div key={service.id} className="col-12 col-md-6 col-lg-4">
@@ -109,20 +106,13 @@ export default function ServiceSectionOne() {
                     </div>
                     <span className={styles.badge}>Service</span>
                   </div>
-
                   <h3 className={styles.cardTitle}>
-                    <Link href={service.link} className={styles.titleLink}>
-                      {service.title}
-                    </Link>
+                    {service.title}
                   </h3>
-
-                  <p className={styles.cardDesc}>{service.description}</p>
-
-                  <div className={styles.cardFooter}>
-                    <Link href={service.link} className={styles.cta}>
-                      Explore details <span className={styles.arrow}>→</span>
-                    </Link>
-                  </div>
+                  <div
+                    className={styles.cardDesc}
+                    dangerouslySetInnerHTML={{ __html: service.description }}
+                  />
                 </article>
               </div>
             );
