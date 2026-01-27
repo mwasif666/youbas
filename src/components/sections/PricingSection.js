@@ -25,7 +25,7 @@ export default function PricingSection() {
         "https://yobas.innovationpixel.com/public/api/services"
       );
       setServices(res.data?.data.items || []);
-      setActiveTab(res.data?.data.items[0]?.id || 1);
+      setActiveTab(res.data?.data.items[0]?.id);
       getPackages();
     } catch (error) {
       console.error("Failed to load services", error);
@@ -42,9 +42,9 @@ export default function PricingSection() {
     try {
       setPackagesLoading(true);
       const res = await axios.get(
-        `https://yobas.innovationpixel.com/public/api/packages/${activeTab}`
+        `https://yobas.innovationpixel.com/public/api/packages?id=${activeTab}`
       );
-      setPackages(res.data.data);
+      setPackages(res.data.data.items);
     } catch (error) {
       console.error("Failed to load services", error);
     } finally {
@@ -52,6 +52,12 @@ export default function PricingSection() {
     }
   };
 
+  useEffect(() => {
+    if (activeTab) {
+      getPackages();
+    }   
+  }, [activeTab]);
+  
     if (loading) {
     return (
       <section style={{minHeight: "80vh"}} className={styles.section}>
@@ -97,38 +103,28 @@ export default function PricingSection() {
 
         {/* Pricing Cards */}
         <div className="row g-4 justify-content-center">
-          {packagesLoading ? <Loading/> : packages.length > 0 ? <div>No Packages found!</div> : packages?.map((pkg, i) => (
+          {packagesLoading ? <Loading/> : packages.length === 0 ? <div>No Packages found!</div> : packages?.map((pkg, i) => (
             <div className="col-xl-4 col-lg-4 col-md-6" key={i}>
               <div
                 className={`${styles.card} ${
-                  pkg.featured ? styles.featured : ""
+                  pkg?.featured ? styles.featured : ""
                 }`}
               >
                 {pkg.featured && <span className={styles.badge}>Popular</span>}
 
-                <div className={styles.imageWrap}>
-                  <img src={pkg.image} alt={pkg.name} />
-                </div>
-
-                <h3 className={styles.title}>{pkg.name}</h3>
-                <p className={styles.desc}>{pkg.desc}</p>
+                <h3 className={styles.title}>{pkg.title}</h3>
+                          <p
+  className={styles.desc}
+  dangerouslySetInnerHTML={{ __html: pkg.description }}
+></p>
 
                 <div className={styles.priceWrap}>
                   <span className={styles.price}>{pkg.price}</span>
                   <span className={styles.period}>{pkg.period}</span>
                 </div>
 
-                <ul className={styles.list}>
-                  {pkg.features.map((item, idx) => (
-                    <li key={idx}>
-                      <FaCheck />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-
                 <a href="#!" className={styles.btn}>
-                  {pkg.cta}
+                  Choose Plan
                 </a>
               </div>
             </div>
