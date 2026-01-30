@@ -69,6 +69,7 @@ export default function LoginPage() {
           "yobasUser",
           JSON.stringify({ id: userId, name: userName, email: userEmail })
         );
+        localStorage.setItem("access_token", payload?.data?.token || payload?.token || "");
         window.dispatchEvent(new Event("yobas:user"));
       } catch (error) {
         // Ignore storage errors.
