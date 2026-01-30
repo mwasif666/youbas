@@ -13,8 +13,8 @@ import LogoBar from "@/components/sections/logo";
 import BrandExpansionTrialCta from "@/app/services/brand-expansion/TrialCta";
 
 export const metadata = {
-  title: "Home 1 | Briza - Creative & Digital Agency Next Js Template",
-  description: "Home 1 | Briza - Creative & Digital Agency Next Js Template",
+  title: "Yobas - Home",
+  description: "Yobas is a leading digital marketing agency that specializes in delivering innovative solutions to help businesses grow and succeed in the online world.",
 };
 
 export default function Home() {

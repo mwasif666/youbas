@@ -2,12 +2,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import styles from "./Login.module.css";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const [formValues, setFormValues] = useState({ email: "", password: "" });
   const [status, setStatus] = useState({ type: "idle", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
-
+  const router = useRouter();
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormValues((prev) => ({ ...prev, [name]: value }));
@@ -63,6 +64,7 @@ export default function LoginPage() {
         payload?.data?.email || payload?.user?.email || formValues.email;
 
       try {
+        router.push("/");
         localStorage.setItem(
           "yobasUser",
           JSON.stringify({ id: userId, name: userName, email: userEmail })
@@ -119,9 +121,6 @@ export default function LoginPage() {
               </label>
 
               <div className={styles.row}>
-                <label className={styles.checkbox}>
-                  <input type="checkbox" /> Remember me
-                </label>
                 <Link className={styles.link} href="/forgot-password">
                   Forgot Password?
                 </Link>

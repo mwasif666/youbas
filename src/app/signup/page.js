@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import styles from "./Signup.module.css";
+import axios from "axios";
 
 const SIGNUP_ENDPOINT = "https://yobas.innovationpixel.com/public/api/clients";
 
@@ -21,47 +22,46 @@ export default function SignupPage() {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    setIsSubmitting(true);
-    setStatus({ type: "idle", message: "" });
+  event.preventDefault();
+  setIsSubmitting(true);
+  setStatus({ type: "idle", message: "" });
 
-    const formData = new FormData();
-    formData.append("name", formValues.name.trim());
-    formData.append("email", formValues.email.trim());
-    formData.append("phone", formValues.phone.trim());
-    formData.append("password", formValues.password);
+  const formData = new FormData();
+  formData.append("name", formValues.name.trim());
+  formData.append("email", formValues.email.trim());
+  formData.append("phone", formValues.phone.trim());
+  formData.append("password", formValues.password);
 
-    try {
-      const response = await fetch(SIGNUP_ENDPOINT, {
-        method: "POST",
-        body: formData,
-      });
+  try {
+    const response = await axios.post(
+      SIGNUP_ENDPOINT,
+      formData
+    );
 
-      const payload = await response.json().catch(() => null);
+    setStatus({
+      type: "success",
+      message: response.data?.message || "Account created successfully.",
+    });
 
-      if (!response.ok) {
-        const message =
-          payload?.message ||
-          payload?.error ||
-          "Signup failed. Please try again.";
-        setStatus({ type: "error", message });
-        return;
-      }
+    setFormValues({
+      name: "",
+      email: "",
+      phone: "",
+      password: "",
+    });
 
-      setStatus({
-        type: "success",
-        message: payload?.message || "Account created successfully.",
-      });
-      setFormValues({ name: "", email: "", phone: "", password: "" });
-    } catch (error) {
-      setStatus({
-        type: "error",
-        message: "Network error. Please try again.",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  } catch (error) {
+    const message =
+      error.response?.data?.message ||
+      error.response?.data?.error ||
+      "Signup failed. Please try again.";
+
+    setStatus({ type: "error", message });
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
 
   return (
     <div className={styles.bg}>

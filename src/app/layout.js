@@ -31,8 +31,8 @@ import SidebarMenu from "@/components/SidebarMenu";
 import {AppWrapper} from "@/context";
 
 export const metadata = {
-  title: "Briza - Creative & Digital Agency Next Js Template",
-  description: "Briza - Creative & Digital Agency Next Js Template",
+  title: "Yobas - Digital Marketing Agency",
+  description: "Yobas is a leading digital marketing agency that specializes in delivering innovative solutions to help businesses grow and succeed in the online world.",
 };
 
 export default function RootLayout({ children }) {

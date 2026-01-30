@@ -110,7 +110,7 @@ function ProfilePageContent() {
       </div>
 
       {/* Content */}
-      <div className="container pb-5 mt-5">
+      <div className="container pb-5">
         <div className="row g-4">
           {/* Sidebar */}
           <div className="col-12 col-lg-4 col-xl-3">
@@ -243,16 +243,16 @@ function ProfilePageContent() {
 
                     <div className="col-12 d-flex gap-2 flex-wrap">
                       <button
-                        type="submit"
-                        className={`btn btn-primary ${styles.primaryBtn}`}
-                      >
-                        Save Changes
-                      </button>
-                      <button
                         type="button"
                         className={`btn btn-outline-light ${styles.secondaryBtn}`}
                       >
                         Cancel
+                      </button>
+                      <button
+                        type="submit"
+                        className={`btn btn-primary ${styles.primaryBtn}`}
+                      >
+                        Save Changes
                       </button>
                     </div>
                   </div>
