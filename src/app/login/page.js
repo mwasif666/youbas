@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import styles from "./Login.module.css";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 export default function LoginPage() {
   const [formValues, setFormValues] = useState({ email: "", password: "" });
@@ -24,65 +25,41 @@ export default function LoginPage() {
       formData.append("email", formValues.email.trim());
       formData.append("password", formValues.password);
 
-      const response = await fetch(
+      const response = await axios.post(
         "https://yobas.innovationpixel.com/public/api/client/login",
-        {
-          method: "POST",
-          body: formData,
-        }
+        formData
       );
 
-      const payload = await response.json().catch(() => null);
-
-      if (!response.ok) {
-        const message =
-          payload?.message ||
-          payload?.error ||
-          "Login failed. Please try again.";
-        setStatus({ type: "error", message });
-        return;
-      }
+      const payload = response.data;
 
       setStatus({
         type: "success",
         message: payload?.message || "Logged in successfully.",
       });
-
-      const userId =
-        payload?.data?.id ||
-        payload?.user?.id ||
-        payload?.id ||
-        payload?.data?.user_id ||
-        payload?.user_id ||
-        null;
-      const userName =
-        payload?.data?.name ||
-        payload?.user?.name ||
-        payload?.name ||
-        formValues.email;
-      const userEmail =
-        payload?.data?.email || payload?.user?.email || formValues.email;
-
       try {
-        router.push("/");
-        localStorage.setItem(
-          "yobasUser",
-          JSON.stringify({ id: userId, name: userName, email: userEmail })
-        );
-        localStorage.setItem("access_token", payload?.data?.token || payload?.token || "");
+        localStorage.setItem("yobasUser",JSON.stringify(payload?.data?.client));
+        localStorage.setItem("access_token",payload?.data?.token || payload?.token || "");
         window.dispatchEvent(new Event("yobas:user"));
+        router.push("/");
       } catch (error) {
-        // Ignore storage errors.
+        // Ignore storage errors
       }
+
     } catch (error) {
+      const message =
+        error?.response?.data?.message ||
+        error?.response?.data?.error ||
+        "Login failed. Please try again.";
+
       setStatus({
         type: "error",
-        message: "Network error. Please try again.",
+        message,
       });
     } finally {
       setIsSubmitting(false);
     }
   };
+
 
   return (
     <div className={styles.bg}>

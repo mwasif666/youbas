@@ -4,13 +4,14 @@ import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ToastContainer, toast } from 'react-toastify';
 import styles from "./Order.module.css";
+import axios from "axios";
 
 const ORDERS_ENDPOINT = "https://yobas.innovationpixel.com/public/api/orders";
 
 function ProfilePageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState();
   const [orders, setOrders] = useState([]);
   const [ordersLoading, setOrdersLoading] = useState(false);
   const [ordersError, setOrdersError] = useState("");
@@ -49,23 +50,23 @@ function ProfilePageContent() {
     const fetchOrders = async () => {
       setOrdersLoading(true);
       setOrdersError("");
-
+      const token = localStorage.getItem("access_token")
+      console.log(token);
+      
       try {
-        const response = await fetch(`${ORDERS_ENDPOINT}/${user.id}`);
-        const payload = await response.json().catch(() => null);
-
-        if (!response.ok) {
-          setOrdersError(
-            payload?.message || "Unable to load orders. Please try again.",
-          );
-          setOrders([]);
-          return;
-        }
-
-        const data = payload?.data || payload?.orders || payload || [];
-        setOrders(Array.isArray(data) ? data : []);
+        const data = await axios.get(
+          `https://yobas.innovationpixel.com/public/api/orders/${user.id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const orders = data?.data?.data || [];
+        setOrders(Array.isArray(orders) ? orders : []);
       } catch (error) {
-        setOrdersError("Network error while loading orders.");
+        const message = error?.response?.data?.message || "Network error while loading orders.";
+        setOrdersError(message);
         setOrders([]);
       } finally {
         setOrdersLoading(false);
@@ -92,15 +93,17 @@ function ProfilePageContent() {
     e.preventDefault();
 
     const token = localStorage.getItem("access_token");
-    if (!token || !user?.email) {
+    const user = localStorage.getItem("yobasUser")
+      ? JSON.parse(localStorage.getItem("yobasUser"))
+      : null;
+    if (!token || !user) {
       toast.error("Not authenticated");
       return;
     }
 
     const form = e.target;
     const newPassword = form[1].value;
-    const confirmPassword = form[2].value;
-
+    const confirmPassword = form[1].value;
     if (newPassword !== confirmPassword) {
       toast.error("Passwords do not match");
       return;
@@ -115,16 +118,14 @@ function ProfilePageContent() {
 
     try {
       const response = await axios.post(
-        "https://yobas.innovationpixel.com/public/api/client/reset-password",
-        payload,
+        "https://yobas.innovationpixel.com/public/api/client/reset-password", payload,
         {
           headers: {
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }
       );
-      const data = response.data;
-
       toast.success("Password updated successfully 🔐");
       form.reset();
     } catch (error) {
@@ -137,7 +138,6 @@ function ProfilePageContent() {
       }
     }
   };
-
 
   const handleProfileSave = async (e) => {
     e.preventDefault();
@@ -153,7 +153,6 @@ function ProfilePageContent() {
     }
 
     const form = e.target;
-
     const payload = {
       name: form[0].value,
       email: form[1].value,
@@ -163,8 +162,7 @@ function ProfilePageContent() {
 
     try {
       const response = await axios.put(
-        `https://yobas.innovationpixel.com/public/api/clients/${user.id}`,
-        payload,
+        `https://yobas.innovationpixel.com/public/api/clients/${user.id}`, payload,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -465,22 +463,17 @@ function ProfilePageContent() {
 
                       <div className="col-12 d-flex gap-2 flex-wrap">
                         <button
-                          type="submit"
-                          className={`btn btn-primary ${styles.primaryBtn}`}
-                        >
-                          Update Password
-                        </button>
-                        <button
                           type="button"
                           className={`btn btn-outline-light ${styles.secondaryBtn}`}
                         >
                           Cancel
                         </button>
-                      </div>
-
-                      <div className={styles.securityNote}>
-                        Tip: Enable 2FA in your account settings (if available)
-                        for extra security.
+                        <button
+                          type="submit"
+                          className={`btn btn-primary ${styles.primaryBtn}`}
+                        >
+                          Update Password
+                        </button>
                       </div>
                     </div>
                   </form>

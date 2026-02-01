@@ -1,14 +1,59 @@
 "use client";
+
+import { useState } from "react";
 import Link from "next/link";
+import axios from "axios";
 import styles from "./Forgot.module.css";
 
 export default function ForgotPage() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState({ type: "", message: "" });
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus({ type: "", message: "" });
+
+    if (!email.trim()) {
+      setStatus({ type: "error", message: "Email is required." });
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const formData = new FormData();
+      formData.append("email", email.trim());
+
+      const { data } = await axios.post(
+        "https://yobas.innovationpixel.com/public/api/client/forgot-password",
+        formData
+      );
+
+      setStatus({
+        type: "success",
+        message: data?.message || "Reset link sent to your email.",
+      });
+
+      setEmail("");
+    } catch (error) {
+      setStatus({
+        type: "error",
+        message:
+          error?.response?.data?.message ||
+          "Unable to send reset link. Please try again.",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className={styles.bg}>
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-12 col-md-10 col-lg-6">
-            <form className={styles.panel} action="#">
+            <form className={styles.panel} onSubmit={handleSubmit}>
               <h1 className={styles.title}>Forgot Password</h1>
               <p className={styles.subtitle}>
                 Enter your account email and we'll send reset instructions.
@@ -20,11 +65,27 @@ export default function ForgotPage() {
                   className={styles.input}
                   type="email"
                   placeholder="E-mail"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={loading}
+                  required
                 />
               </label>
 
-              <button className={styles.cta} type="submit">
-                SEND RESET LINK
+              {status.message && (
+                <p
+                  className={
+                    status.type === "error"
+                      ? styles.error
+                      : styles.success
+                  }
+                >
+                  {status.message}
+                </p>
+              )}
+
+              <button className={styles.cta} type="submit" disabled={loading}>
+                {loading ? "SENDING..." : "SEND RESET LINK"}
               </button>
 
               <div className={styles.footer}>
