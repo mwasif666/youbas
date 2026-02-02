@@ -28,23 +28,23 @@ const pickIcon = (title = "") => {
   if (t.includes("ddp") || t.includes("shipping") || t.includes("logistics"))
     return FiTruck;
 
-  if (t.includes("marketplace") || t.includes("amazon") || t.includes("walmart"))
+  if (
+    t.includes("marketplace") ||
+    t.includes("amazon") ||
+    t.includes("walmart")
+  )
     return FiShoppingCart;
 
-  if (t.includes("private label") || t.includes("brand"))
-    return FiTag;
+  if (t.includes("private label") || t.includes("brand")) return FiTag;
 
-  if (t.includes("factory") || t.includes("sourcing"))
-    return FiPackage;
+  if (t.includes("factory") || t.includes("sourcing")) return FiPackage;
 
-  if (t.includes("wholesale") || t.includes("bulk"))
-    return FiBox;
+  if (t.includes("wholesale") || t.includes("bulk")) return FiBox;
 
   if (t.includes("digital") || t.includes("social") || t.includes("marketing"))
     return FiTrendingUp;
 
-  if (t.includes("expansion") || t.includes("multi"))
-    return FiLayers;
+  if (t.includes("expansion") || t.includes("multi")) return FiLayers;
 
   return FiUsers;
 };
@@ -58,7 +58,7 @@ export default function ServiceSectionOne() {
       try {
         setLoading(true);
         const res = await axios.get(
-          "https://yobas.innovationpixel.com/public/api/services"
+          "https://yobas.innovationpixel.com/public/api/services",
         );
         setServices(res.data?.data.items || []);
       } catch (error) {
@@ -73,7 +73,7 @@ export default function ServiceSectionOne() {
 
   if (loading) {
     return (
-      <section style={{minHeight: "80vh"}} className={styles.section}>
+      <section style={{ minHeight: "80vh" }} className={styles.section}>
         <div className="container text-center py-5">
           <Loading />
         </div>
@@ -106,7 +106,13 @@ export default function ServiceSectionOne() {
                     </div>
                     <span className={styles.badge}>Service</span>
                   </div>
-                  <h3 className={styles.cardTitle}>
+                  <h3
+                    style={{
+                      fontSize: "1.5rem",
+                      fontWeight: "bold",
+                    }}
+                    className={styles.cardTitle}
+                  >
                     {service.title}
                   </h3>
                   <div

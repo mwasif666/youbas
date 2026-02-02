@@ -29,9 +29,9 @@
 .heading {
   margin: 0 0 12px;
   font-family: "Oswald", serif;
-  font-weight: 600;
-  font-size: 60px;
-  line-height: 66px;
+  font-weight: 700;
+  font-size: 52px;
+  line-height: 58px;
   letter-spacing: -1.2px;
   text-transform: uppercase;
   color: var(--title);
@@ -151,6 +151,34 @@
   overflow: hidden;
 }
 
+.cardDesc ul,
+.cardDesc ol {
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.cardDesc li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.cardDesc li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: 2px solid var(--text);
+  transform: translateY(-50%);
+}
+
 /* Footer CTA */
 .cardFooter {
   display: flex;
@@ -192,22 +220,22 @@
 
 @media (max-width: 1200px) {
   .heading {
-    font-size: 45px;
-    line-height: 50px;
+    font-size: 40px;
+    line-height: 46px;
   }
 }
 
 @media (max-width: 991px) {
   .heading {
-    font-size: 42px;
-    line-height: 45px;
+    font-size: 36px;
+    line-height: 40px;
   }
 }
 
 @media (max-width: 576px) {
   .heading {
-    font-size: 30px;
-    line-height: 40px;
+    font-size: 28px;
+    line-height: 34px;
   }
 }
 

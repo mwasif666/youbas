@@ -3845,7 +3845,8 @@ img {
   background-color: rgb(255, 255, 255);
   padding: 30px 50px;
   /* box-shadow: 10px 10px 20px rgb(153, 153, 153); */
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 .mission h4 {
@@ -8797,3 +8798,6 @@ img {
 } /*# sourceMappingURL=main.css.map */
 
 /* Custom css */
+.hero1-content p {
+  color: white !important;
+}

@@ -8,7 +8,6 @@ import Loading from "./Loading";
 import "swiper/css";
 import "swiper/css/pagination";
 
-
 export default function HeroSectionOne() {
   const swiperRef = useRef(null);
   const paginationRef = useRef(null);
@@ -25,19 +24,21 @@ export default function HeroSectionOne() {
         "https://yobas.innovationpixel.com/public/api/heroes",
         {
           validateStatus: (status) => status < 500,
-        }
+        },
       );
 
       if (res.status === 401) {
         setSlides([]);
         return;
       }
-      const data = Array.isArray(res.data?.data.items) ? res.data.data.items : [];
+      const data = Array.isArray(res.data?.data.items)
+        ? res.data.data.items
+        : [];
       setSlides(data);
 
       if (data.length) {
         setBgImage(
-          `https://yobas.innovationpixel.com/public/storage/${data[0].image.path}`
+          `https://yobas.innovationpixel.com/public/storage/${data[0].image.path}`,
         );
       }
     } catch (err) {
@@ -61,18 +62,21 @@ export default function HeroSectionOne() {
 
     if (!currentSlide) return;
 
-    timerRef.current = setTimeout(() => {
-      swiper.slideNext();
-    }, Number(currentSlide.time) || 4000);
+    timerRef.current = setTimeout(
+      () => {
+        swiper.slideNext();
+      },
+      Number(currentSlide.time) || 4000,
+    );
 
     setBgImage(
-      `https://yobas.innovationpixel.com/public/storage/${currentSlide.image.path}`
+      `https://yobas.innovationpixel.com/public/storage/${currentSlide.image.path}`,
     );
   };
 
   if (loading) {
     return (
-      <section style={{marginTop:"120px"}}>
+      <section style={{ marginTop: "120px" }}>
         <div className="container text-center py-5">
           <Loading />
         </div>
@@ -113,8 +117,12 @@ export default function HeroSectionOne() {
                 <div className="row">
                   <div className="col-lg-8 col-xl-7">
                     <div className="hero1-content">
-                      <h1 style={{color:"white"}}>{slide.title}</h1>
-                      <p style={{color:"white"}} dangerouslySetInnerHTML={{ __html: slide.description }} />
+                      <h1 style={{ color: "white" }}>{slide.title}</h1>
+                      <p
+                        className="text-white"
+                        style={{ color: "white" }}
+                        dangerouslySetInnerHTML={{ __html: slide.description }}
+                      />
                     </div>
                   </div>
                 </div>

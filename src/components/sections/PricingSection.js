@@ -111,10 +111,10 @@ export default function PricingSection() {
                 {pkg.featured && <span className={styles.badge}>Popular</span>}
 
                 <h3 className={styles.title}>{pkg.title}</h3>
-                <p
+                <div
                   className={styles.desc}
                   dangerouslySetInnerHTML={{ __html: pkg.description }}
-                ></p>
+                />
 
                 <div className={styles.priceWrap}>
                   <span className={styles.price}>${pkg.price}</span>

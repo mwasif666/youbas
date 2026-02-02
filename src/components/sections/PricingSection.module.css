@@ -79,13 +79,9 @@
   height: 100%;
   padding: 36px 30px;
   border-radius: 22px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.05),
-    rgba(255, 255, 255, 0.02)
-  );
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(14px);
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   transition: all 0.35s ease;
@@ -93,17 +89,13 @@
 
 .card:hover {
   transform: translateY(-10px);
-  border-color: rgb(38, 74, 161, 0.45);
-  box-shadow: 0 25px 60px rgba(38, 74, 161, 0.18);
+  border-color: rgba(38, 74, 161, 0.35);
+  box-shadow: 0 24px 48px rgba(38, 74, 161, 0.18);
 }
 
 .featured {
-  background: linear-gradient(
-    180deg,
-    rgba(0, 219, 105, 0.15),
-    rgba(0, 219, 105, 0.04)
-  );
-  border-color: rgba(0, 219, 105, 0.6);
+  background: #f6fff9;
+  border-color: rgba(0, 219, 105, 0.5);
   transform: translateY(-12px);
 }
 
@@ -129,12 +121,50 @@
   opacity: 0.8;
   line-height: 1.6;
   margin-bottom: 22px;
+  font-size: 15px;
+}
+
+.desc p {
+  margin: 0 0 10px;
+}
+
+.desc p:last-child {
+  margin-bottom: 0;
+}
+
+.desc ul,
+.desc ol {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+  display: grid;
+  gap: 8px;
+}
+
+.desc li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.desc li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #264aa1;
+  transform: translateY(-50%);
 }
 
 .priceWrap {
   display: flex;
   align-items: baseline;
   gap: 10px;
+  margin-top: auto;
   margin-bottom: 26px;
 }
 
