@@ -12,6 +12,7 @@ function ProfilePageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [user, setUser] = useState();
+  const [token, setToken] = useState(localStorage.getItem("access_token"));
   const [orders, setOrders] = useState([]);
   const [ordersLoading, setOrdersLoading] = useState(false);
   const [ordersError, setOrdersError] = useState("");
@@ -24,7 +25,7 @@ function ProfilePageContent() {
     try {
       const raw = localStorage.getItem("yobasUser");
       const parsed = raw ? JSON.parse(raw) : null;
-      if (!parsed) {
+      if (!parsed && !token) {
         router.replace("/login");
         return;
       }
@@ -51,8 +52,6 @@ function ProfilePageContent() {
       setOrdersLoading(true);
       setOrdersError("");
       const token = localStorage.getItem("access_token")
-      console.log(token);
-      
       try {
         const data = await axios.get(
           `https://yobas.innovationpixel.com/public/api/orders/${user.id}`,
@@ -111,14 +110,16 @@ function ProfilePageContent() {
 
     const payload = {
       email: user.email,
-      token: token,
+      name:user.name,
+      phone:user.phone,
+      current_password: form[0].value,
       password: newPassword,
       password_confirmation: confirmPassword,
     };
 
     try {
       const response = await axios.post(
-        "https://yobas.innovationpixel.com/public/api/client/reset-password", payload,
+        `https://yobas.innovationpixel.com/public/api/clients/${user.id}`, payload,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -290,6 +291,7 @@ function ProfilePageContent() {
                         </label>
                         <input
                           type="email"
+                          disabled={true}
                           className={`form-control ${styles.input}`}
                           defaultValue={user?.email || ""}
                           placeholder="you@example.com"
@@ -423,7 +425,7 @@ function ProfilePageContent() {
 
                   <form onSubmit={handlePasswordSubmit}>
                     <div className="row g-3">
-                      {/* <div className="col-12">
+                      <div className="col-12">
                       <label className={`form-label ${styles.label}`}>
                         Current Password
                       </label>
@@ -433,7 +435,7 @@ function ProfilePageContent() {
                         placeholder="••••••••"
                         required
                       />
-                    </div> */}
+                    </div>
 
                       <div className="col-12 col-md-6">
                         <label className={`form-label ${styles.label}`}>

@@ -4,8 +4,10 @@ import { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import styles from "./Forgot.module.css";
+import { useRouter } from "next/navigation";
 
 export default function ForgotPage() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState({ type: "", message: "" });
   const [loading, setLoading] = useState(false);
@@ -29,12 +31,12 @@ export default function ForgotPage() {
         "https://yobas.innovationpixel.com/public/api/client/forgot-password",
         formData
       );
-
+      router.push("/verify-otp");
       setStatus({
         type: "success",
-        message: data?.message || "Reset link sent to your email.",
+        message: data?.message || "OTP sent to your email.",
       });
-
+      localStorage.setItem("email", email);
       setEmail("");
     } catch (error) {
       setStatus({
@@ -85,7 +87,7 @@ export default function ForgotPage() {
               )}
 
               <button className={styles.cta} type="submit" disabled={loading}>
-                {loading ? "SENDING..." : "SEND RESET LINK"}
+                {loading ? "SENDING..." : "SEND OTP"}
               </button>
 
               <div className={styles.footer}>
