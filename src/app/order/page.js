@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 import styles from "./Order.module.css";
 import axios from "axios";
 
@@ -12,7 +12,7 @@ function ProfilePageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [user, setUser] = useState();
-  const [token, setToken] = useState(localStorage.getItem("access_token"));
+  const [token, setToken] = useState(null);
   const [orders, setOrders] = useState([]);
   const [ordersLoading, setOrdersLoading] = useState(false);
   const [ordersError, setOrdersError] = useState("");
@@ -22,18 +22,21 @@ function ProfilePageContent() {
   });
 
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem("yobasUser");
-      const parsed = raw ? JSON.parse(raw) : null;
-      if (!parsed && !token) {
-        router.replace("/login");
-        return;
-      }
-      setUser(parsed);
-    } catch (error) {
+    const savedToken = localStorage.getItem("access_token");
+    setToken(savedToken);
+  }, []);
+
+  useEffect(() => {
+    const raw = localStorage.getItem("yobasUser");
+    const parsed = raw ? JSON.parse(raw) : null;
+
+    if (!parsed && !token) {
       router.replace("/login");
+      return;
     }
-  }, [router]);
+
+    setUser(parsed);
+  }, [token]);
 
   useEffect(() => {
     const tab = searchParams.get("tab");
@@ -51,20 +54,22 @@ function ProfilePageContent() {
     const fetchOrders = async () => {
       setOrdersLoading(true);
       setOrdersError("");
-      const token = localStorage.getItem("access_token")
+      const token = localStorage.getItem("access_token");
       try {
         const data = await axios.get(
-          `https://yobas.innovationpixel.com/public/api/orders/${user.id}`,
+          `https://yobas.innovationpixel.com/public/api/order?client_id=${user.id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
         const orders = data?.data?.data || [];
         setOrders(Array.isArray(orders) ? orders : []);
       } catch (error) {
-        const message = error?.response?.data?.message || "Network error while loading orders.";
+        const message =
+          error?.response?.data?.message ||
+          "Network error while loading orders.";
         setOrdersError(message);
         setOrders([]);
       } finally {
@@ -75,6 +80,11 @@ function ProfilePageContent() {
     fetchOrders();
   }, [user?.id]);
 
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    router.push(`?tab=${tab}`);
+  };
+  
   const isActive = (key) => (activeTab === key ? styles.activeBtn : "");
 
   const handleLogout = () => {
@@ -110,8 +120,8 @@ function ProfilePageContent() {
 
     const payload = {
       email: user.email,
-      name:user.name,
-      phone:user.phone,
+      name: user.name,
+      phone: user.phone,
       current_password: form[0].value,
       password: newPassword,
       password_confirmation: confirmPassword,
@@ -119,21 +129,20 @@ function ProfilePageContent() {
 
     try {
       const response = await axios.post(
-        `https://yobas.innovationpixel.com/public/api/clients/${user.id}`, payload,
+        `https://yobas.innovationpixel.com/public/api/clients/${user.id}`,
+        payload,
         {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
-        }
+        },
       );
       toast.success("Password updated successfully 🔐");
       form.reset();
     } catch (error) {
       if (error.response) {
-        toast.error(
-          error.response.data?.message || "Password update failed"
-        );
+        toast.error(error.response.data?.message || "Password update failed");
       } else {
         toast.error("Network error while updating password");
       }
@@ -163,23 +172,23 @@ function ProfilePageContent() {
 
     try {
       const response = await axios.put(
-        `https://yobas.innovationpixel.com/public/api/clients/${user.id}`, payload,
+        `https://yobas.innovationpixel.com/public/api/clients/${user.id}`,
+        payload,
         {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
-        }
+        },
       );
       const data = response.data;
       const updatedUser = { ...user, ...payload };
       localStorage.setItem("yobasUser", JSON.stringify(updatedUser));
       setUser(updatedUser);
       toast.success("Profile Update Successfully");
-
     } catch (error) {
       if (error.response) {
-        toast.error(error.response.data?.message || "Profile update failed")
+        toast.error(error.response.data?.message || "Profile update failed");
       } else {
         toast.error("Network error while updating profile");
       }
@@ -190,7 +199,6 @@ function ProfilePageContent() {
     <>
       <ToastContainer />
       <div className={styles.pageWrap}>
-        {/* Banner */}
         <div className={styles.banner}>
           <div className="container">
             <div className={styles.bannerInner}>
@@ -199,10 +207,8 @@ function ProfilePageContent() {
           </div>
         </div>
 
-        {/* Content */}
         <div className="container pb-5">
           <div className="row g-4">
-            {/* Sidebar */}
             <div className="col-12 col-lg-4 col-xl-3">
               <div className={styles.card}>
                 <div className={styles.cardHeader}>
@@ -210,7 +216,9 @@ function ProfilePageContent() {
                     {(user?.name || user?.email || "U").charAt(0).toUpperCase()}
                   </div>
                   <div>
-                    <div className={styles.userName}>{user?.name || "User"}</div>
+                    <div className={styles.userName}>
+                      {user?.name || "User"}
+                    </div>
                     <div className={styles.userEmail}>{user?.email || ""}</div>
                     {/* <div className={styles.userMeta}>Member since Jan 2025</div> */}
                   </div>
@@ -220,7 +228,7 @@ function ProfilePageContent() {
                   <button
                     type="button"
                     className={`${styles.sideBtn} ${isActive("profile")}`}
-                    onClick={() => setActiveTab("profile")}
+                    onClick={() => handleTabChange("profile")}
                   >
                     <span className={styles.dot} />
                     Profile Information
@@ -229,7 +237,7 @@ function ProfilePageContent() {
                   <button
                     type="button"
                     className={`${styles.sideBtn} ${isActive("orders")}`}
-                    onClick={() => setActiveTab("orders")}
+                    onClick={() => handleTabChange("orders")}
                   >
                     <span className={styles.dot} />
                     Orders
@@ -238,7 +246,7 @@ function ProfilePageContent() {
                   <button
                     type="button"
                     className={`${styles.sideBtn} ${isActive("password")}`}
-                    onClick={() => setActiveTab("password")}
+                    onClick={() => handleTabChange("password")}
                   >
                     <span className={styles.dot} />
                     Change Password
@@ -257,9 +265,7 @@ function ProfilePageContent() {
               </div>
             </div>
 
-            {/* Main */}
             <div className="col-12 col-lg-8 col-xl-9">
-              {/* Profile Tab */}
               {activeTab === "profile" && (
                 <div className={styles.card}>
                   <div className={styles.topBar}>
@@ -326,8 +332,6 @@ function ProfilePageContent() {
                   </form>
                 </div>
               )}
-
-              {/* Orders Tab */}
               {activeTab === "orders" && (
                 <div className={styles.card}>
                   <div className={styles.topBar}>
@@ -408,16 +412,14 @@ function ProfilePageContent() {
                   </div>
                 </div>
               )}
-
-              {/* Password Tab */}
               {activeTab === "password" && (
                 <div className={styles.card}>
                   <div className={styles.topBar}>
                     <div>
                       <h2 className={styles.h2}>Change Password</h2>
                       <p className={styles.muted}>
-                        Use a strong password (min 8 chars) and avoid reusing old
-                        passwords.
+                        Use a strong password (min 8 chars) and avoid reusing
+                        old passwords.
                       </p>
                     </div>
                     <span className={styles.pill}>Security</span>
@@ -426,16 +428,16 @@ function ProfilePageContent() {
                   <form onSubmit={handlePasswordSubmit}>
                     <div className="row g-3">
                       <div className="col-12">
-                      <label className={`form-label ${styles.label}`}>
-                        Current Password
-                      </label>
-                      <input
-                        type="password"
-                        className={`form-control ${styles.input}`}
-                        placeholder="••••••••"
-                        required
-                      />
-                    </div>
+                        <label className={`form-label ${styles.label}`}>
+                          Current Password
+                        </label>
+                        <input
+                          type="password"
+                          className={`form-control ${styles.input}`}
+                          placeholder="••••••••"
+                          required
+                        />
+                      </div>
 
                       <div className="col-12 col-md-6">
                         <label className={`form-label ${styles.label}`}>
