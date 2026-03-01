@@ -15,7 +15,7 @@ export default function AboutUsPage() {
       <ServiceSectionOne />
       <PricingSection />
       <ProjectSectionOne />
-      <TeamSectionOne showItems={8} />
+      {/* <TeamSectionOne showItems={8} /> */}
     </>
   );
 }

@@ -99,16 +99,20 @@ export default function HeroSectionOne() {
           loop={true}
           speed={900}
           pagination={{
-            el: paginationRef.current,
             clickable: true,
-            renderBullet: (i, className) =>
-              `<span class="${className}">${i + 1}</span>`,
           }}
           onBeforeInit={(swiper) => {
             swiperRef.current = swiper;
-            swiper.params.pagination.el = paginationRef.current;
           }}
-          onSwiper={startSlideTimer}
+          onSwiper={(swiper) => {
+            if (paginationRef.current) {
+              swiper.params.pagination.el = paginationRef.current;
+              swiper.pagination.init();
+              swiper.pagination.render();
+              swiper.pagination.update();
+            }
+            startSlideTimer(swiper);
+          }}
           onSlideChange={startSlideTimer}
         >
           {slides.map((slide) => (
